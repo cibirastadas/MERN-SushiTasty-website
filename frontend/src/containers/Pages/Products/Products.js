@@ -12,7 +12,7 @@ const Products = ({data}) => {
     const location = useLocation();
 
     useEffect(()=>{
-        axios.get("https://sushifresh-backend.herokuapp.com/" + location.pathname).then(response=>setProducts(response.data))
+        axios.get("https://sushifresh-backend.herokuapp.com" + location.pathname).then(response=>setProducts(response.data))
     },[location.pathname])
 
     const allProducts = products.map(item=> <ProductDisplay key={item._id} data={item}/>)
