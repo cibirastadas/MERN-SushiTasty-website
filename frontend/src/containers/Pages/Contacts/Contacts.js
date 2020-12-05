@@ -55,7 +55,7 @@ const Contacts = ()=>{
 
     const handleSubmit = ()=>{
         const user={...feedback, name : userCookie}
-        axios.post("https://sushifresh.herokuapp.com/feedbacks", user).then(response=>setAnswer({answer : response.data}))
+        axios.post("https://sushifresh-backend.herokuapp.com/feedbacks", user).then(response=>setAnswer({answer : response.data}))
         setFeedback({rating: null, userText: "", name: ""})
     }
 

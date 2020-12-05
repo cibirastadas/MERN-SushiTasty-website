@@ -43,7 +43,7 @@ const LogReg = ({handleLogin, readCookie}) => {
     useEffect(()=>{
         if(Object.keys(errors).length === 0 && isSubmitting){     
             const path = (account ? "login" : "register")
-            axios.post("https://sushifresh.herokuapp.com/" + path, values)
+            axios.post("https://sushifresh-backend.herokuapp.com/" + path, values)
             .then(response=>{
                 setIsSubmitted(true)
                 if(account){

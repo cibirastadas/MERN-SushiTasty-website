@@ -44,10 +44,10 @@ const Feedbacks = () => {
     useEffect(()=>{
         readCookie();
         if(userCookie!=="admin" && userCookie!==""){
-            axios.get("https://sushifresh.herokuapp.com//feedbacks/" + userCookie).then(response=>setFeedbacks(response.data)).catch(error=> console.log(error.response))
+            axios.get("https://sushifresh-backend.herokuapp.com/feedbacks/" + userCookie).then(response=>setFeedbacks(response.data)).catch(error=> console.log(error.response))
         }
         if(userCookie==="admin" && userCookie!==""){
-            axios.get("https://sushifresh.herokuapp.com/feedbacks").then(response=>setFeedbacks(response.data)).catch(error=> console.log(error.response))
+            axios.get("https://sushifresh-backend.herokuapp.com/feedbacks").then(response=>setFeedbacks(response.data)).catch(error=> console.log(error.response))
         }   
     },[userCookie, answer])
 

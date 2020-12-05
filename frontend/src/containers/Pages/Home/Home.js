@@ -13,8 +13,8 @@ export const Home =()=>{
     const [feedbacks, setFeedbacks] = useState([])
     const [products, setProducts] = useState([])
     useEffect(()=>{
-        axios.get("https://sushifresh.herokuapp.com//feedbacks").then(response=>setFeedbacks(response.data.slice(-9)))
-        axios.get("https://sushifresh.herokuapp.com//products").then(response=>setProducts(response.data))
+        axios.get("https://sushifresh-backend.herokuapp.com/feedbacks").then(response=>setFeedbacks(response.data.slice(-9)))
+        axios.get("https://sushifresh-backend.herokuapp.com/products").then(response=>setProducts(response.data))
     },[])
     
     return (

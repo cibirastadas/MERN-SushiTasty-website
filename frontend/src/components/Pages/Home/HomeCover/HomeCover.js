@@ -9,7 +9,7 @@ const HomeCover = () => {
         <div className={classes.homeCover}>
                <Fade right>
                     <div className={classes.homeCoverText}>
-                        <h1>Skaniausi Sušiai cia</h1>
+                        <h1>Skaniausi Sušiai</h1>
                         <p>Issirinkite ir mėgaukites</p>
                         <p>Pagaminta pagal geriausius sushi meistrų receptus</p>
                         <Button linkTo="/products" styleLink={classes.linkStyle} cName={{btnColor : "btnBlack"}}>Mūsų meniu</Button>
