@@ -56,12 +56,12 @@ const Feedbacks = () => {
     }
 
     const handleDelete = (id)=>{
-        axios.delete("https://sushifresh.herokuapp.com/feedbacks/" + id).then(response=>setAnswer({answer : response.data}))
+        axios.delete("https://sushifresh-backend.herokuapp.com/feedbacks/" + id).then(response=>setAnswer({answer : response.data}))
     }
 
     const handleUpdate = (id)=>{
         const user={...values, name : userCookie, date: Date.now()}
-        axios.patch("https://sushifresh.herokuapp.com/feedbacks/" + id, user).then(response=>setAnswer({answer : response.data}))
+        axios.patch("https://sushifresh-backend.herokuapp.com/feedbacks/" + id, user).then(response=>setAnswer({answer : response.data}))
     }
 
     return (
