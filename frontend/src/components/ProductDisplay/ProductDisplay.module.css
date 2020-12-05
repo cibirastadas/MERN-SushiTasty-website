@@ -1,0 +1,105 @@
+.productContainer{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin:  2rem 0.5rem;
+    min-width: 250px;
+    width: 24%;
+    cursor: pointer;
+    padding-top: 3rem;
+
+}
+
+.mostPopular{
+    position: absolute;
+    top : 0;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    background-color: red;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    color: white;
+    font-weight: 700;
+}
+
+.imgContainer{
+    max-width: 250px;
+    height: auto;
+}
+
+.imgContainer img{
+    width: 100%;
+    height: 100%;
+}
+
+.productText{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.productText p{
+    padding-top: 1rem;
+    font-size: 1rem;
+}
+
+.title{
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.price{
+    margin-bottom: 0.5rem;
+}
+
+.descriptionBlock{
+    position: absolute;
+    height: 0;
+    width: 100%;
+    top: 0;
+    background-color: #e2e8ea;
+    text-align: center;
+    transition: height 0.5s ease;
+    overflow: hidden;
+}
+
+.descriptionHeight{
+    height: 50%;
+}
+
+.descriptionTitle{
+    margin-top: 1rem;
+    font-size: 1.5rem;
+  
+}
+
+.descriptionText{
+    padding: 15px;
+    color: rgb(56, 56, 56);
+}
+
+@media (max-width : 1800px){
+    .productContainer{
+        width: 31%;
+    }
+}
+
+@media (max-width : 900px){
+    .productContainer{
+        width: 47%;
+    }
+}
+
+@media (max-width : 600px){
+    .productContainer{
+        flex: 1;
+    }
+}

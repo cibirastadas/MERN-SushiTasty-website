@@ -1,0 +1,54 @@
+.HomeAboutCover{
+    background-image: url("../../../../images/HomePhoto1.jpg") ;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    max-width: 100vw;
+    height: 50vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;  
+}
+.description{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 50%;
+    height: 100%;
+    margin-right: 2rem;
+}
+.title {
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+.aboutUs{
+    font-size: 1.5rem;
+}
+
+.aboutMore{
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+@media (max-width:1060px){
+    .title {
+        font-size: 1.7rem;
+    }
+    .aboutUs{
+        font-size: 1.2rem;
+    }
+}
+@media (max-width:600px){
+    .HomeAboutCover{
+        justify-content: center;
+    }
+    .description{
+        width: 90%;
+        text-align: center;
+        margin: 0;
+    }
+    .aboutUs{
+        font-size: 1.2rem;
+    }
+}

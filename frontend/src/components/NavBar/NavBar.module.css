@@ -1,0 +1,23 @@
+.navBarContainer{
+    height: 80px;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    display: flex;
+    z-index: 999;
+}
+.menuIcon{
+    display: none;
+}
+
+@media (max-width: 960px){
+    .menuIcon{
+        height: 100%;
+        display: block;
+        font-size: 2rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+}

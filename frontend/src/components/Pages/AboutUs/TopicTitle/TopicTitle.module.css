@@ -1,0 +1,24 @@
+.title{
+    font-size: 1.2rem;
+    width: 100%;
+    color: rgb(87, 86, 86);
+    border-bottom: 1px solid black;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding-bottom: 15px;
+    padding-top: 15px;
+}
+
+.borderBottom{
+    border-bottom: 2px solid red;
+}
+
+.title:hover{
+    color: black;
+}
+
+@media (max-width : 1000px){
+    .title{
+        text-align: center;
+    }   
+}

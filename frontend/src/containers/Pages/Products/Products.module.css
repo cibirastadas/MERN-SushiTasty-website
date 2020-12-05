@@ -1,0 +1,9 @@
+.content{
+    width: 90%;
+    margin: auto;
+}
+.products{
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+}

@@ -1,0 +1,25 @@
+.dropDownMenu{
+    width: 200px;
+    position: absolute;
+    top: 80px;
+    left: -60px;
+    text-align: start;
+    background-color: white;
+}
+.dropDownMenu li {
+    cursor: pointer;
+    transition: background-color 0.1s ease-in;
+}
+.dropDownMenu li:hover{
+    background-color: #d1d1d1;
+}
+.dropDownMenu.clicked{
+    display: none;
+}
+.dropDownLink{
+    display: block;
+    width: 100%;
+    height: 100%;
+    color:  black;
+    padding: 16px;
+}

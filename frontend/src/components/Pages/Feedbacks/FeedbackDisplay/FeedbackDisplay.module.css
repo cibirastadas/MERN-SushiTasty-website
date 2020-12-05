@@ -1,0 +1,81 @@
+.feedbackContainer{
+    display: flex;
+    flex-direction: column;
+}
+.homeFeedback{
+    width: 90%;
+    padding: 2rem;
+    margin: 1rem;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.userLogo{
+    align-items: center;
+    display: flex;
+}
+
+.image{
+    background-color: rgb(211, 212, 209);
+    max-width: 80px;
+    min-width: 80px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 50%;
+}
+
+.image img{
+    border-radius: 50%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.userName{
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.userInfo{
+    margin-left: 0.5rem;
+}
+
+.rating{
+    width: 100%;
+    margin-top: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    border-bottom:3px solid rgb(221, 221, 221);
+    padding-bottom: 1rem;
+}
+.userTextBlock p{
+    margin-top: 0.5rem;
+    width: 100%;
+    line-height: 1.5rem;
+}
+.homeFeedback .userTextBlock{
+    height: 100px;
+    overflow: auto;
+  }
+.response{
+    margin: 2rem 0 1rem 2rem;
+    padding-left: 2rem;
+    border-left:3px solid rgb(221, 221, 221);
+}
+.adminLogo{
+    padding-top: 1rem;
+    align-items: center;
+    display: flex;
+}
+.adminText{
+    margin-top: 0.5rem;
+}
+@media (max-width: 1150px){
+    .homeFeedback .response{
+        margin-left: 0rem;
+    }
+}
+@media (max-width: 460px){
+    .response{
+        margin-left: 1rem;
+    }
+}

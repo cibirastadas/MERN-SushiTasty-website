@@ -1,0 +1,12 @@
+#meniu{
+    margin: auto;
+    padding: 2rem 0;
+}
+
+.products{
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 90%;
+}

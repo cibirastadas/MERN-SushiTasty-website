@@ -1,0 +1,20 @@
+.logoContainer{
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.logoMargin{
+    margin-right: auto;
+}
+
+.footerLogo{
+    margin: 0;
+}
+@media (max-width: 960px){
+
+    .logoContainer img{
+        width: 250px;
+        height: auto;
+    }
+}

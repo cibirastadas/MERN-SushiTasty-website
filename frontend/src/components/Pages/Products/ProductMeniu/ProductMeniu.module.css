@@ -1,0 +1,15 @@
+.productContainer{
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    border-bottom: 1px solid rgb(206, 206, 206);
+    border-radius: 30px;
+}
+
+@media (max-width:700px){
+    .productContainer{
+        justify-content: flex-start;
+    }
+
+}

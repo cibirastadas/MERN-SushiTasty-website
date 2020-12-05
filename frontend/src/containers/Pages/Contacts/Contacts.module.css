@@ -1,0 +1,26 @@
+.content{
+    width: 90%;
+    height: auto;
+    margin: auto;
+}
+.formsInfo{
+    display: flex;
+    margin-bottom: 2rem;
+}
+.forms{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-right: 2rem;
+    border-right: 1px solid rgb(206, 206, 206);
+}
+
+@media (max-width: 800px){
+    .forms{
+        border: none;
+        padding: 0;
+    }
+    .formsInfo{
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,15 @@
+.legendForm{
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.legendForm fieldset{
+    border: 1px solid rgb(206, 206, 206);
+    border-radius: 5px;
+    padding: 15px;
+}
+.legendForm legend{
+    text-align:right;
+    padding: 10px;
+    background: black;
+    color: #fff;
+    font-size: 1rem;
+}

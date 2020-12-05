@@ -1,0 +1,10 @@
+.starContainer{
+    display: flex;
+}
+.inputs input{
+    display: none;
+}
+.star{
+    cursor: pointer;
+    transition: color 0.2s;
+}
