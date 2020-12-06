@@ -10,6 +10,6 @@ Created an online store using the **Node.js** platform and the **Express.js** fr
 The [MVC](https://www.sitepoint.com/node-js-mvc-application/) model is used in this project
 
 ## Contact
-Tadas Čibiras - https://github.com/cibirastadas
+Tadas Čibiras - cibirastadas@gmail.com
 
 Project link - https://sushifresh.herokuapp.com
