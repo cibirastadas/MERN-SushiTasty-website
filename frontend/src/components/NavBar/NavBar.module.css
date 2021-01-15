@@ -12,6 +12,7 @@
 
 @media (max-width: 960px){
     .menuIcon{
+        padding-right: 0.5rem;
         height: 100%;
         display: block;
         font-size: 2rem;
