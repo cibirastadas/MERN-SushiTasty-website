@@ -1,6 +1,6 @@
-const Sushies = require("../models/sushiesModel")
+import Sushies  from ("../models/sushiesModel")
 
-const getAllProducts = async ( req, res, next) =>{
+export const getAllProducts = async ( req, res, next) =>{
     try{
         const sushies = await Sushies.find();
         res.json(sushies)
@@ -8,4 +8,3 @@ const getAllProducts = async ( req, res, next) =>{
         res.json({msg: err})
     }
 }
-exports.getAllProducts = getAllProducts;

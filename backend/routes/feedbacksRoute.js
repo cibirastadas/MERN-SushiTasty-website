@@ -1,21 +1,26 @@
-const express = require("express");
-const router = express.Router();
+import { Router } from "express";
+const router = Router();
+/* middlewares */
+import authJWT from "../utils/authJWT.js";
+import {
+  getAllFeedbacks,
+  getAllUserFeedbacks,
+  deleteFeedbackById,
+  createNewFeedback,
+  updatFeedbackById,
+  getFeedbacksForHome,
+} from "../controllers/feedbacksController.js";
 
-const feedbacksController = require("../controllers/feedbacksController")
+router.get("/", authJWT, getAllFeedbacks);
 
-     /* Gets all feedbacks */
-     router.get("/", feedbacksController.getAllFeedbacks)
+router.get("/home", getFeedbacksForHome);
 
-     /* Gets all user feedbacks */
-     router.get("/:user", feedbacksController.getAllUserFeedbacks)
-     
-     /* Delete feedback */
-     router.delete("/:id", feedbacksController.deleteFeedbackById)
-     
-     /* Create new feedback */
-     router.post("/", feedbacksController.createNewFeedback)
+router.get("/:userId", authJWT, getAllUserFeedbacks);
 
-     /* Patch (update) feedback*/
-     router.patch("/:id", feedbacksController.updatFeedbackById)
-  
-module.exports = router
+router.post("/", authJWT, createNewFeedback);
+
+router.delete("/:id", authJWT, deleteFeedbackById);
+
+router.patch("/:id", authJWT, updatFeedbackById);
+
+export default router;

@@ -4,7 +4,7 @@ import classes from "./ShopEmail.module.css"
 const ShopEmail = ({className}) => {
     return (
         <div className={`${className} ${classes.email}`}>
-            <a href="mailto:info@sushifresh.lt"><AiFillMail/>info@sushifresh.lt</a>
+            <a href="mailto:info@sushitasty.lt"><AiFillMail/>info@sushitasty.lt</a>
         </div>
     );
 };

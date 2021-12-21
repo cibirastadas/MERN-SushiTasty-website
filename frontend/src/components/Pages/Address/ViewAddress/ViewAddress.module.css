@@ -1,0 +1,23 @@
+.modalWidth {
+  width: 800px;
+}
+.editBtn {
+  margin-left: 0.5rem;
+}
+.btnWidth {
+  max-width: 150px;
+  width: 100%;
+}
+@media (max-width: 400px) {
+  .editBtn {
+    margin: 1rem 0 0 0;
+  }
+  .btnWidth {
+    width: 100%;
+    max-width: 100%;
+  }
+  .btnWidth {
+    width: 100%;
+    max-width: 100%;
+  }
+}

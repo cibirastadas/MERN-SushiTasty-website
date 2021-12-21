@@ -1,7 +1,7 @@
 export const aboutUs=[
     {
         title: "Apie mus",
-        description : "SushiFresh - yra japoniško maisto restoranas, siūlantis platų maisto pasirinkimą. Pavadinimo kilmė kilo iš mūsų šviežiai atrenkamų maisto produktų. Neseniai atsidares restoranas yra įsikūręs Savanorių pr. 157A. Pas mus maistą galimą užsisakyti vietoje, tiek su pristatymu į namus. Išskirtinis interjeras ir nepaprastai gražiai paruoštas maistas Jums paliks atsiminimą ilgam.",
+        description : "SushiTasty - yra japoniško maisto restoranas, siūlantis platų maisto pasirinkimą. Pavadinimo kilmė kilo iš mūsų šviežiai atrenkamų maisto produktų. Neseniai atsidares restoranas yra įsikūręs Savanorių pr. 157A. Pas mus maistą galimą užsisakyti vietoje, tiek su pristatymu į namus. Išskirtinis interjeras ir nepaprastai gražiai paruoštas maistas Jums paliks atsiminimą ilgam.",
         img : "https://compote.slate.com/images/14b75978-f3dd-4f75-87d8-e2e44906e42a.jpg?width=840"
     },
     {

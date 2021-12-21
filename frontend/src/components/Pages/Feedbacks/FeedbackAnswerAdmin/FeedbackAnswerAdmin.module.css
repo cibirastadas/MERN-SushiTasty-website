@@ -1,15 +1,9 @@
-.feedbackContainer{
-    margin-top: 2rem;
+.feedbackContainer {
+  margin-top: 2rem;
 }
 
-.mdClose{
-    font-size: 2rem;
-    cursor: pointer;
-    text-align: end;
-}
-
-.answer{
-    color: #2ecc71;
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+.mdClose {
+  font-size: 2rem;
+  cursor: pointer;
+  text-align: end;
 }

@@ -1,9 +1,10 @@
-.content{
-    width: 90%;
-    margin: auto;
+.content {
+  width: 90%;
+  max-width: 1700px;
+  margin: auto;
 }
-.products{
-    margin-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
+.products {
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
 }

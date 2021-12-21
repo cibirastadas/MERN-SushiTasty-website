@@ -1,0 +1,22 @@
+.modalWidth {
+  width: 600px;
+}
+.orderProductContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+.orderProductBlock {
+  width: 100%;
+}
+.viewDetailsBtn {
+  margin-left: auto;
+}
+.detailsBlock {
+  margin: 1rem;
+}
+.detailsBlock p {
+  margin: 0.3rem 0;
+}
+.detailsBlock span {
+  font-weight: bold;
+}

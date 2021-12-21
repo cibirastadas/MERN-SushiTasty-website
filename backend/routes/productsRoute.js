@@ -1,23 +1,24 @@
-const express = require("express");
-const router = express.Router();
+import { Router } from "express";
+const router = Router();
+import authRole from "../utils/authRole.js";
+import authJWT from "../utils/authJWT.js";
 
-const productsController = require("../controllers/productsController")
-      /* Gets all products */
-      router.get("/", productsController.getAllProducts)
-      
-      /* Gets all sushies */
-      router.get("/sushies", productsController.getAllSushies)
+import {
+  getAllProducts,
+  getAllSelectedProducts,
+  createNewProduct,
+  deleteProductById,
+  updateProductById,
+} from "../controllers/productsController.js";
 
-      /* Gets all salads */
-      router.get("/salads", productsController.getAllSalads)
+router.get("/", getAllProducts);
 
-      /* Gets all Soups */
-      router.get("/soups", productsController.getAllSoups)
+router.post("/selected-products", authJWT, getAllSelectedProducts);
 
-      /* Gets all sushies Sets */
-      router.get("/sushies-sets", productsController.getAllSushiesSets)
+router.post("/", authJWT, authRole, createNewProduct);
 
-      /* Gets all Drinks */
-      router.get("/drinks", productsController.getAllDrinks)
+router.delete("/:id", authJWT, authRole, deleteProductById);
 
-module.exports = router
+router.patch("/:id", authJWT, authRole, updateProductById);
+
+export default router;

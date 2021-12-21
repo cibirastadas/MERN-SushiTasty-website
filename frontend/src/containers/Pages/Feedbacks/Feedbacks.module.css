@@ -1,4 +1,13 @@
-.content{
-    width: 90%;
-    margin: auto;
+.content {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+}
+.feedbacksEmpty {
+  color: tomato;
+  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+  font-size: 5rem;
 }

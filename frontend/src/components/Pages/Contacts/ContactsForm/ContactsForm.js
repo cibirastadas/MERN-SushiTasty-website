@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from "../../../Button/Button"
+import Button from "../../../Buttons/ToggleButton/ToggleButton"
 import LegendForm from '../../../LegendForm/LegendForm';
 import SectionTitleSecond from '../../../SectionTitleSecond/SectionTitleSecond';
 import classes from "./ContactsForm.module.css"

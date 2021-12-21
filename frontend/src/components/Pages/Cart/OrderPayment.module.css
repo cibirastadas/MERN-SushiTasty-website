@@ -1,0 +1,32 @@
+.orderPayment {
+  display: flex;
+  flex-direction: column;
+}
+.collapsible {
+  display: flex;
+  align-items: center;
+  letter-spacing: 2px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.active,
+.collapsible:hover {
+  background-color: #25618a;
+}
+.icon {
+  font-size: 30px;
+}
+.collapsible span {
+  padding: 0 15px;
+}
+.collapsibleArrow {
+  transform: rotateX(180deg);
+}

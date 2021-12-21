@@ -1,71 +1,88 @@
-const Sushies = require("../models/sushiesModel")
-const Salads = require("../models/saladsModel")
-const Soups = require("../models/soupsModel")
-const SushiesSets = require("../models/sushiesSetsModel")
-const Drinks = require("../models/drinksModel")
+import { Product } from "../models/productModel.js";
+import Category from "../models/categoryModel.js";
+export const getAllProducts = async (req, res, next) => {
+  try {
+    const products = await Product.find();
+    res.json(products);
+  } catch (err) {
+    res.json(err);
+  }
+};
 
-const getAllProducts = async ( req, res, next) =>{
-    try{
-        const sushies = await Sushies.find();
-        const salads = await Salads.find();
-        const soups = await Soups.find();
-        const sushiesSets = await SushiesSets.find();
-        const drinks = await Drinks.find();
-        const product = [...sushies,...salads,...soups,...sushiesSets,...drinks,]
-        res.json(product)
-    }catch(err){
-        res.json({msg: err})
+export const getAllSelectedProducts = async (req, res, next) => {
+  try {
+    const products = await Product.find({ _id: { $in: req.body } });
+    res.json(products);
+  } catch (err) {
+    res.json(err);
+  }
+};
+
+export const createNewProduct = async (req, res, next) => {
+  try {
+    const product = Product({
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+      image: req.body.image,
+      units: req.body.units || 0,
+      amount: req.body.amount || 0,
+      popular: req.body.popular,
+      categoryId: req.body.category,
+    });
+    const category = await Category.findById(req.body.category);
+    category.products.push(product._id);
+    await product.save();
+    await category.save();
+    res
+      .status(200)
+      .send({ id: product._id, message: "Produktas buvo sėkmingai sukūrtas" });
+  } catch (err) {
+    res.json(err);
+  }
+};
+
+export const deleteProductById = async (req, res, next) => {
+  try {
+    const category = await Category.findOne().populate({
+      path: "products",
+      match: {
+        _id: req.params.id,
+      },
+    });
+    category.products.pull({ _id: req.params.id });
+    category.save();
+    await Product.deleteOne({ _id: req.params.id });
+    res.status(200).send("Produktas buvo sėkmingai ištryntas");
+  } catch (err) {
+    res.json(err);
+  }
+};
+export const updateProductById = async (req, res, next) => {
+  try {
+    await Product.updateOne(
+      { _id: req.params.id },
+      {
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price || 0,
+        image: req.body.image,
+        units: req.body.units || 0,
+        amount: req.body.amount || 0,
+        popular: req.body.popular,
+        categoryId: req.body.category,
+      }
+    );
+    if (req.body.category !== req.body.categoryId) {
+      Category.findByIdAndUpdate(req.body.categoryId, {
+        $pull: { products: req.params.id },
+      });
+      Category.findByIdAndUpdate(req.body.category, {
+        $push: { products: req.params.id },
+      });
     }
-}
-
-const getAllSushies = async ( req, res, next) =>{
-    try{
-        const sushies = await Sushies.find();
-        res.json(sushies)
-    }catch(err){
-        res.json({msg: err})
-    }
-}
-
-const getAllSalads = async ( req, res, next) =>{
-    try{
-        const salads = await Salads.find();
-        res.json(salads)
-    }catch(err){
-        res.json({msg: err})
-    }
-}
-
-const getAllSoups = async ( req, res, next) =>{
-    try{
-        const soups = await Soups.find();
-        res.json(soups)
-    }catch(err){
-        res.json({msg: err})
-    }
-}
-
-const getAllSushiesSets = async ( req, res, next) =>{
-    try{
-        const sushiesSets = await SushiesSets.find();
-        res.json(sushiesSets)
-    }catch(err){
-        res.json({msg: err})
-    }
-}
-
-const getAllDrinks = async ( req, res, next) =>{
-    try{
-        const drinks = await Drinks.find();
-        res.json(drinks)
-    }catch(err){
-        res.json({msg: err})
-    }
-}
-
-exports.getAllProducts = getAllProducts
-exports.getAllDrinks = getAllDrinks
-exports.getAllSushiesSets = getAllSushiesSets
-exports.getAllSoups = getAllSoups
-exports.getAllSalads = getAllSalads
-exports.getAllSushies = getAllSushies
+    res.status(200).send("Produktas buvo sėkmingai atnaujintas");
+  } catch (err) {
+    res.json(err);
+  }
+};

@@ -1,20 +1,16 @@
-.modal{
-    width: 80%;
-    padding: 15px;
-    height: auto;
+.modal {
+  width: 80%;
+  padding: 15px;
+  height: auto;
 }
-.content{
-    padding: 15px;
-    height: 100%;
-    width: 100%;
-    border-radius: 20px;
+.content {
+  padding: 30px 15px 15px 15px;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
 }
-.mdClose{
-    text-align: end;
-    font-size: 2rem;
-    cursor: pointer;
-}
-.answer{
-    color: #2ecc71;
-    font-size: 1.5rem;
+.mdClose {
+  text-align: end;
+  font-size: 2rem;
+  cursor: pointer;
 }

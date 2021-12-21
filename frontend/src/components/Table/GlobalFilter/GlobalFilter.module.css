@@ -1,0 +1,23 @@
+.globalFilter {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(88, 88, 88);
+  overflow: hidden;
+  max-width: 100%;
+  padding: 8px 10px;
+}
+.search {
+  padding: 0;
+  font-size: 1rem;
+  outline: none;
+  height: 100%;
+  border: none;
+}
+.title {
+  font-size: 1.2rem;
+  padding: 0 15px;
+}
+.searchIcon {
+  font-size: 30px;
+  padding-left: 10px;
+}

@@ -1,0 +1,29 @@
+.btnIcon {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 15px;
+  font-weight: 700;
+  transition: all 0.1s ease-out;
+  cursor: pointer;
+  background-color: white;
+  letter-spacing: 2px;
+  color: #2f3542;
+}
+.btnIcon:hover {
+  background-color: #f6f6f6;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 2px;
+}
+.btnIcon span {
+  display: flex;
+}
+.icon {
+  padding-right: 1rem;
+}
+.btnWidth {
+  width: 100%;
+}
+.shadow {
+}

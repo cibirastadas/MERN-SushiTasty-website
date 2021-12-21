@@ -1,0 +1,95 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+  opacity: 0;
+  transition: all 0.1s ease-in-out;
+  pointer-events: none;
+}
+.overlay.show {
+  opacity: 1;
+  pointer-events: visible;
+}
+.modalWrapper {
+  height: 100%;
+  max-width: 90%;
+  max-height: 90%;
+  transform: translateY(-200px);
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.modal {
+  position: relative;
+  max-height: 100%;
+  max-width: 100%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.overlay.show .modalWrapper {
+  transform: translateY(0);
+}
+.innerModal {
+  overflow-y: auto;
+  max-height: 100%;
+  max-width: 100%;
+}
+.modalContent {
+  background-color: white;
+  max-height: 100%;
+  max-width: 100%;
+}
+.modalHeader {
+}
+.modalTitle {
+  letter-spacing: 3px;
+  padding: 15px 0;
+  text-align: center;
+}
+.modalBody {
+  display: flex;
+}
+
+.mdClose {
+  position: relative;
+}
+.mdClose svg {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  top: 5px;
+  right: 5px;
+  z-index: 100;
+  cursor: pointer;
+}
+.contentPadding {
+  padding-bottom: 77px;
+}
+.modalFooter {
+  height: 77px;
+  padding: 1rem;
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  width: 100%;
+  /*  border-radius: 0 0 5px 5px; */
+}
+
+.modalFooter button {
+  max-width: 200px;
+  width: 100%;
+}
+@media (max-width: 400px) {
+  .modalFooter .modalButton {
+    width: 100%;
+    max-width: 100%;
+  }
+}

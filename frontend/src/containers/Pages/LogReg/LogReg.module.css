@@ -1,59 +1,51 @@
+.cover {
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Lock_font_awesome.svg/512px-Lock_font_awesome.svg.png");
 
-.modal{
-    width: 70%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  flex: 1;
 }
-.cover{
-    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Lock_font_awesome.svg/512px-Lock_font_awesome.svg.png");
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-    flex: 1;   
-}
-.moduleRight{
-    color: black;
-    position: relative;
-    z-index: 1;
-    background-color: rgba(0, 0, 102, 0.582);
-    background-color: #e2e8ea;
-    flex:1;
-    padding: 25px 25px 40px 25px;
-    height: 100%;
-    width: 100%;
-    border-radius: 20px/0 20px 20px 0;
+.moduleRight {
+  color: black;
+  position: relative;
+  z-index: 1;
+  background-color: rgba(0, 0, 102, 0.582);
+  background-color: #e2e8ea;
+  flex: 1;
+  padding: 25px 25px 40px 25px;
+  height: 400px;
+  width: 100%;
 }
 
-.mdClose{
-    text-align: end;
-    font-size: 2rem;
-    cursor: pointer;
+.mdClose {
+  text-align: end;
+  font-size: 2rem;
+  cursor: pointer;
 }
 
-.response{
-    text-align: center;
-    color: red;
+.response {
+  text-align: center;
+  color: red;
 }
 
 .close {
+  display: none;
+}
+
+.modalWdith {
+  width: 900px;
+}
+
+@media (max-width: 900px) {
+  .cover {
     display: none;
+  }
 }
 
-@media (max-width: 900px){
-    .cover{
-        display: none;
-    }
-    .moduleRight{
-        border: none;
-    }
-    .moduleRight{
-        border-radius: 20px;
-    }
-}
-
-@media (max-width: 740px){
-    .modal{
-        width: 90%;
-    }
+@media (max-width: 740px) {
+  .modal {
+    width: 90%;
+  }
 }

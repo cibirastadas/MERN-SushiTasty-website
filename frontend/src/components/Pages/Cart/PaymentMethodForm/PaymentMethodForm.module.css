@@ -1,0 +1,35 @@
+.active {
+  background-color: #ececec;
+}
+.content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.open {
+  max-height: 500px;
+}
+.inputControl {
+  position: absolute;
+  pointer-events: none;
+  height: 0;
+}
+.circle {
+  color: #1888ff;
+}
+.inputGroup {
+  font-size: 15px;
+  width: 100%;
+  letter-spacing: 2px;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 1rem 20px;
+}
+.inputGroup p {
+  padding-left: 1rem;
+}
+.paymentMethodForm label {
+  display: flex;
+}

@@ -1,0 +1,19 @@
+.active,
+.collapsible:hover {
+  background-color: #555;
+}
+.content {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+}
+.open {
+  padding: 1rem ;
+  max-height: 600px;
+}
+.datePicker {
+  padding: 1rem 1rem;
+}
+.errorCode {
+}

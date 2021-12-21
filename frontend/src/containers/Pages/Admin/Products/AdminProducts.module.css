@@ -1,0 +1,9 @@
+.productsContainer {
+  padding: 25px 15px;
+}
+.modalWidth {
+  width: 600px;
+}
+.products {
+  display: flex;
+}

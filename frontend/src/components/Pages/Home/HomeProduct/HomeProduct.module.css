@@ -1,41 +1,39 @@
-.productContainer{
-    padding: 3px;
-    position: relative;
-    margin: 0.5rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    width: 30%;
-    max-height: 200px;
-    min-width: 250px;
-    flex: 1;
+.productContainer {
+  padding: 3px;
+  position: relative;
+  margin: 0.5rem;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 30%;
+  max-height: 200px;
+  min-width: 250px;
+  flex: 1;
 }
 
-.link{
-    display: flex;
-    width: 100%;
-    height: 100%;
-    transition: opacity 0.2s ease;
+.link {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.2s ease;
 }
 
-.link:hover{
-    opacity: 0.7;
+.link:hover {
+  opacity: 0.7;
 }
 
-.title{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-    position: absolute;
-    z-index: 1;
-    color: white;
+.title {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  position: absolute;
+  z-index: 1;
+  color: white;
 }
- img{
-    object-fit: cover;
-    min-width: 100%;
-    min-height: 100%;
-    transition: opacity 0.2s ease-in;
-    
+.productContainer img {
+  object-fit: cover;
+  min-width: 100%;
+  min-height: 100%;
+  transition: opacity 0.2s ease-in;
 }
-

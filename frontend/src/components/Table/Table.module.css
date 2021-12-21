@@ -1,0 +1,120 @@
+.tableContainer {
+  margin: auto;
+}
+.tableParent {
+  overflow-x: auto;
+}
+.tableParent table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  position: relative;
+  overflow-x: auto;
+  padding: 0 15px;
+  width: 100%;
+}
+.tableEditBtns {
+  display: flex;
+  justify-content: center;
+}
+.addBtn {
+  display: block;
+  width: 100%;
+  width: 200px;
+}
+.deleteBtn {
+  margin-left: 0.5rem;
+}
+.globalFilter {
+  display: flex;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  justify-content: center;
+}
+.globalFilter button {
+  margin-right: auto;
+}
+
+.globalFilter div {
+  margin-right: auto;
+}
+.globalFilterMargin div {
+  margin-right: 0;
+}
+table td,
+table th {
+  text-align: center;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+table tr:hover {
+  background-color: #ddd;
+}
+.plusIcon {
+  display: none;
+}
+
+table th,
+tfoot td {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #1888ff;
+  color: white;
+}
+.tableContainer img {
+  min-width: unset;
+  width: 100px;
+}
+.productImages {
+  position: relative;
+}
+.imgOverlay {
+  background-color: rgba(0, 0, 0, 0.411);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.productCount {
+  position: absolute;
+  color: white;
+  margin: 0;
+  font-size: 23px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.trackOrder {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+.description {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  width: 150px;
+}
+@media (max-width: 575px) {
+  .globalFilter .addBtn {
+    margin-right: 0;
+    margin-left: auto;
+    width: auto;
+    order: 1;
+  }
+  .globalFilter div {
+    margin: 0;
+  }
+  .addText {
+    display: none;
+  }
+  .plusIcon {
+    display: block;
+  }
+}

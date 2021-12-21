@@ -1,0 +1,42 @@
+.addressesContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: auto;
+  padding: 0 1rem;
+}
+.btnWidth {
+  max-width: 150px;
+  width: 100%;
+}
+.addBtn {
+  margin: 0.5rem 0;
+  margin: 0.5rem 25px;
+}
+.addressesEmpty {
+  color: tomato;
+  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+  font-size: 5rem;
+}
+.addressBlock {
+  margin: 1rem 0;
+  padding: 25px;
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+.addressBlock p {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+.addressBlock span {
+  font-weight: normal;
+}
+.modalWidth {
+  width: 800px;
+}
+@media (max-width: 400px) {
+  .btnWidth {
+    width: 100%;
+    max-width: 100%;
+  }
+}
