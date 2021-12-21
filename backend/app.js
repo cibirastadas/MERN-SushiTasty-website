@@ -48,7 +48,7 @@ app.all("*", (req, res, next) => {
 /* Error handler */
 
 app.use((err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
+  const statusCode = err.statusCode || 5000;
   res.status(statusCode).json({
     success: 0,
     message: err.message,
