@@ -1,11 +1,18 @@
 import React from "react";
 import classes from "./FormSuccess.module.css";
-const FormSuccess = ({ response }) => {
+const FormSuccess = ({ response, account, handleAccount }) => {
   return (
     <div className={classes.successCover}>
       <h1 className={classes.title}>
-        {" "}
-        Sekmingai prisijungėte: {response.name}
+        {response}{" "}
+        {!account && (
+          <p className={classes.login}>
+            Prisijungti galite spausti{" "}
+            <span onClick={handleAccount} className={classes.pressHere}>
+              čia
+            </span>
+          </p>
+        )}
       </h1>
     </div>
   );

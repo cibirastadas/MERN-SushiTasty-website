@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import PageCovers from "../../../components/PageCovers/PageCovers";
 import Cookies from "js-cookie";
 import axios from "../../../axios/axiosInstance";
@@ -8,8 +9,10 @@ import LoadingScreen from "../../../components/LoadingScreen/LoadingScreen";
 import classes from "./Feedbacks.module.css";
 import ResponseModal from "../../../components/Modals/ResponseModal";
 import { validateFeedbacks } from "../../../components/ValidateInfo/ValidateInfo";
+import Pagination from "../../../components/Pagination/Pagination";
 
 const Feedbacks = () => {
+  const { search } = useLocation();
   const [userCookie] = useState(() => JSON.parse(Cookies.get("user")));
   const [values, setValues] = useState({
     name: {
@@ -27,7 +30,7 @@ const Feedbacks = () => {
   const [errors, setErrors] = useState({});
   const [isResponseModal, setIsResponseModal] = useState(false);
   const [feedbacks, setFeedbacks] = useState([]);
-
+  const [paginationNavigation, setPaginationNavigation] = useState({});
   const resetValues = () => {
     setValues({
       userUpdatedAt: "",
@@ -46,25 +49,19 @@ const Feedbacks = () => {
     setValues({ ...values, [name]: value });
   };
   useEffect(() => {
+    const userRoleParam =
+      userCookie.role === "Admin" ? `` : `/${userCookie.id}`;
+    const query = search ? search + `&limit=5` : "?page=1&limit=5";
     setLoading(true);
-    if (userCookie.role !== "Admin") {
-      axios
-        .get("http://localhost:5000/feedbacks/" + userCookie.id)
-        .then((resp) => {
-          setFeedbacks(resp.data);
-          setLoading(false);
-        })
-        .catch((error) => console.log(error));
-      return;
-    }
     axios
-      .get("http://localhost:5000/feedbacks")
+      .get("http://localhost:5000/feedbacks" + userRoleParam + query)
       .then((resp) => {
-        setFeedbacks(resp.data);
+        setPaginationNavigation(resp.data.paginationNavigation);
+        setFeedbacks(resp.data.results);
         setLoading(false);
       })
       .catch((error) => console.log(error));
-  }, [userCookie]);
+  }, [userCookie, search]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -119,51 +116,60 @@ const Feedbacks = () => {
     return true;
   };
   return (
-    <div>
+    <>
       {loading && <LoadingScreen loading={loading} />}
-      <PageCovers cName={{ coverImg: "coverContacts" }}>
-        Sveiki atvyke
-      </PageCovers>
-      <ResponseModal
-        onClose={() => setIsResponseModal(false)}
-        open={isResponseModal}
-        btnAction={() => setIsResponseModal(false)}
-        bodyText={response}
-      />
-      <div className={classes.content}>
-        {!feedbacks.length && (
-          <p className={classes.feedbacksEmpty}>Atsiliepimų nėra</p>
-        )}
-        {userCookie.role === "Normal" ? (
-          <FeedbacksUser
-            handleChange={handleChange}
-            handleDelete={handleDelete}
-            handleUpdate={handleUpdate}
-            submitHandler={submitHandler}
-            resetValues={resetValues}
-            userCookie={userCookie}
-            feedbacks={feedbacks}
-            values={values}
-            errors={errors}
-            isResponseModal={isResponseModal}
-            setUpdateValues={setUpdateValues}
+      {!loading && (
+        <div>
+          <PageCovers cName={{ coverImg: "coverContacts" }}>
+            Atsiliepimai
+          </PageCovers>
+          <ResponseModal
+            onClose={() => setIsResponseModal(false)}
+            open={isResponseModal}
+            btnAction={() => setIsResponseModal(false)}
+            bodyText={response}
           />
-        ) : (
-          <FeedbacksAdmin
-            handleChange={handleChange}
-            handleDelete={handleDelete}
-            handleUpdate={handleUpdate}
-            submitHandler={submitHandler}
-            resetValues={resetValues}
-            setUpdateValues={setUpdateValues}
-            userCookie={userCookie}
-            feedbacks={feedbacks}
-            values={values}
-            errors={errors}
-          />
-        )}
-      </div>
-    </div>
+          <div className={classes.content}>
+            {!feedbacks.length ? (
+              <p className={classes.feedbacksEmpty}>Atsiliepimų nėra</p>
+            ) : (
+              <>
+                <Pagination paginationNavigation={paginationNavigation} />
+                {userCookie.role === "Normal" ? (
+                  <FeedbacksUser
+                    handleChange={handleChange}
+                    handleDelete={handleDelete}
+                    handleUpdate={handleUpdate}
+                    submitHandler={submitHandler}
+                    resetValues={resetValues}
+                    userCookie={userCookie}
+                    feedbacks={feedbacks}
+                    values={values}
+                    errors={errors}
+                    isResponseModal={isResponseModal}
+                    setUpdateValues={setUpdateValues}
+                  />
+                ) : (
+                  <FeedbacksAdmin
+                    handleChange={handleChange}
+                    handleDelete={handleDelete}
+                    handleUpdate={handleUpdate}
+                    submitHandler={submitHandler}
+                    resetValues={resetValues}
+                    setUpdateValues={setUpdateValues}
+                    userCookie={userCookie}
+                    feedbacks={feedbacks}
+                    values={values}
+                    errors={errors}
+                  />
+                )}
+                <Pagination paginationNavigation={paginationNavigation} />
+              </>
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

@@ -6,6 +6,30 @@ export const UserLinks = [
     cName: "dropDownLink",
   },
   {
+    title: "Produktai",
+    path: "/admin/products",
+    cName: "dropDownLink",
+    roles: ["Admin"],
+  },
+  {
+    title: "Uzsakymai",
+    path: "/admin/orders",
+    cName: "dropDownLink",
+    roles: ["Admin"],
+  },
+  {
+    title: "Uzsakymai",
+    path: "/kitchenWorker/orders",
+    cName: "dropDownLink",
+    roles: ["KitchenWorker"],
+  },
+  {
+    title: "Uzsakymai",
+    path: "/courier/orders",
+    cName: "dropDownLink",
+    roles: ["Courier"],
+  },
+  {
     title: "Atsiliepimai",
     path: "/feedbacks",
     roles: ["Normal"],
@@ -22,17 +46,5 @@ export const UserLinks = [
     path: "/addresses",
     roles: ["Normal"],
     cName: "dropDownLink",
-  },
-  {
-    title: "Produktai",
-    path: "/admin/products",
-    cName: "dropDownLink",
-    roles: ["Admin"],
-  },
-  {
-    title: "Uzsakymai",
-    path: "/admin/orders",
-    cName: "dropDownLink",
-    roles: ["Admin"],
   },
 ];

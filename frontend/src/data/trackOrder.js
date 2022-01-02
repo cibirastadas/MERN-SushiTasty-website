@@ -1,8 +1,9 @@
 export const trackOrder = Object.freeze({
-  Draft: "Rengiamas",
-  Ordered: "Užsakytas",
-  Canceled: "Atšauktas",
-  Accepted: "Patvirtintas",
-  Preparing: "Ruošiamas",
-  Delivery: "Pristatomas",
+  Canceled: "Atšauktas užsakymas",
+  Draft: "Rengiamas užsakyti",
+  Ordered: "Užsakytas užsakymas",
+  Preparing: "Ruošiamas užsakymas",
+  Prepared: "Paruoštas užsakymas",
+  Delivery: "Pristatomas užsakymas",
+  Completed: "Užbaigtas užsakymas",
 });

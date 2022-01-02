@@ -1,5 +1,5 @@
 export const deliveryType = Object.freeze({
-  DeliveryHome: "Pristatymas",
+  DeliveryHome: "Pristatymas į namus",
   TakeAwayHome: "Atsiimti pačiam",
   EatInside: "Valgyti restorane",
 });

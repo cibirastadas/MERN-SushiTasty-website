@@ -1,7 +1,9 @@
 import { Router } from "express";
-const router = Router();
-/* middlewares */
+import Feedbacks from "../models/feedbacksModel.js";
 import authJWT from "../utils/authJWT.js";
+import paginateResults from "../utils/paginateResults.js";
+import { authAdminRole, authAdminAndNormalRole } from "../utils/authRoles.js";
+const router = Router();
 import {
   getAllFeedbacks,
   getAllUserFeedbacks,
@@ -11,16 +13,28 @@ import {
   getFeedbacksForHome,
 } from "../controllers/feedbacksController.js";
 
-router.get("/", authJWT, getAllFeedbacks);
+router.get(
+  "/",
+  authJWT,
+  authAdminRole,
+  paginateResults(Feedbacks),
+  getAllFeedbacks
+);
 
 router.get("/home", getFeedbacksForHome);
 
-router.get("/:userId", authJWT, getAllUserFeedbacks);
+router.get(
+  "/:userId",
+  authJWT,
+  authAdminAndNormalRole,
+  paginateResults(Feedbacks, "user._id"),
+  getAllUserFeedbacks
+);
 
-router.post("/", authJWT, createNewFeedback);
+router.post("/", authJWT, authAdminAndNormalRole, createNewFeedback);
 
-router.delete("/:id", authJWT, deleteFeedbackById);
+router.delete("/:id", authJWT, authAdminAndNormalRole, deleteFeedbackById);
 
-router.patch("/:id", authJWT, updatFeedbackById);
+router.patch("/:id", authJWT, authAdminAndNormalRole, updatFeedbackById);
 
 export default router;

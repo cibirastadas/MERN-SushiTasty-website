@@ -8,7 +8,7 @@ const axiosInterceptor = () => {
     },
     (error) => {
       var status = error.response.status;
-      if (status === 403) {
+      if ([403].includes(status)) {
         Cookies.remove("accessToken");
         Cookies.remove("user");
         localStorage.removeItem("items");

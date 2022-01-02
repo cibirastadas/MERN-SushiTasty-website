@@ -8,6 +8,8 @@ const LogRegForm = ({
   errors,
   account,
   handleAccount,
+  isSubmitted,
+  errorResponse,
 }) => {
   return (
     <div className={classes.parentContainer}>
@@ -15,6 +17,7 @@ const LogRegForm = ({
         <h2 className={classes.title}>
           {account ? "Prisijungimas" : "Registracija"}
         </h2>
+        <p className={classes.errorResponse}>{!isSubmitted && errorResponse}</p>
         <div className={account ? classes.hide : classes.formContainer}>
           <input
             name="name"

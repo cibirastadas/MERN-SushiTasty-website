@@ -21,9 +21,6 @@
 .street {
   font-weight: bold;
 }
-.city {
-  font-size: 15px;
-}
 .addressInfo {
   margin-left: 1rem;
 }
@@ -38,6 +35,13 @@ button.btnAdd {
 .inputControl {
   position: absolute;
   height: 0;
+}
+.city {
+  max-width: 400px;
+  margin-top: 0.5rem;
+  font-size: 15px;
+  width: 100%;
+  height: 100%;
 }
 .addressForm {
   max-height: 0;
@@ -54,21 +58,26 @@ button.btnAdd {
   display: block;
   margin-top: 1rem;
 }
+.cityBox label {
+  display: block;
+  margin-top: 1rem;
+}
 .inputGroup input {
-  border: none;
-  box-shadow: 0 2px 2px 0;
   max-width: 400px;
   margin-top: 0.5rem;
   font-size: 15px;
   padding: 10px;
   width: 100%;
   height: 100%;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 4px;
 }
 .inputGroup textarea {
   margin: 0.5rem 0 1rem 0;
   font-size: 15px;
   height: 100px;
-  box-shadow: 0 2px 2px 0;
+  border: 1px solid hsl(0, 0%, 80%);
+  border-radius: 4px;
 }
 .radioList {
   font-weight: 700;
@@ -116,17 +125,6 @@ button.btnAdd {
 .deliveryAddressError {
   margin-left: 1rem;
 }
-.addressButtons button {
-}
-/* .transfrom {
-  transition: transform ease-out 2s;
-  transform: translateX(90%);
-  opacity: 0.5;
-}
-.transfrom.ok {
-  opacity: 1;
-  transform: translateX(0);
-} */
 @media (max-width: 400px) {
   .addressButtons button {
     width: 100%;

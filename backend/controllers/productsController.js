@@ -1,14 +1,20 @@
 import { Product } from "../models/productModel.js";
-import Category from "../models/categoryModel.js";
+
 export const getAllProducts = async (req, res, next) => {
   try {
-    const products = await Product.find();
-    res.json(products);
+    res.json(res.paginatedResults);
   } catch (err) {
     res.json(err);
   }
 };
 
+export const getAllProductsByCategory = async (req, res, next) => {
+  try {
+    res.json(res.paginatedResults);
+  } catch (err) {
+    res.json(err);
+  }
+};
 export const getAllSelectedProducts = async (req, res, next) => {
   try {
     const products = await Product.find({ _id: { $in: req.body } });
@@ -17,7 +23,6 @@ export const getAllSelectedProducts = async (req, res, next) => {
     res.json(err);
   }
 };
-
 export const createNewProduct = async (req, res, next) => {
   try {
     const product = Product({
@@ -30,10 +35,7 @@ export const createNewProduct = async (req, res, next) => {
       popular: req.body.popular,
       categoryId: req.body.category,
     });
-    const category = await Category.findById(req.body.category);
-    category.products.push(product._id);
     await product.save();
-    await category.save();
     res
       .status(200)
       .send({ id: product._id, message: "Produktas buvo sėkmingai sukūrtas" });
@@ -44,14 +46,6 @@ export const createNewProduct = async (req, res, next) => {
 
 export const deleteProductById = async (req, res, next) => {
   try {
-    const category = await Category.findOne().populate({
-      path: "products",
-      match: {
-        _id: req.params.id,
-      },
-    });
-    category.products.pull({ _id: req.params.id });
-    category.save();
     await Product.deleteOne({ _id: req.params.id });
     res.status(200).send("Produktas buvo sėkmingai ištryntas");
   } catch (err) {
@@ -69,18 +63,10 @@ export const updateProductById = async (req, res, next) => {
         image: req.body.image,
         units: req.body.units || 0,
         amount: req.body.amount || 0,
-        popular: req.body.popular,
+        popular: req.body.popular || false,
         categoryId: req.body.category,
       }
     );
-    if (req.body.category !== req.body.categoryId) {
-      Category.findByIdAndUpdate(req.body.categoryId, {
-        $pull: { products: req.params.id },
-      });
-      Category.findByIdAndUpdate(req.body.category, {
-        $push: { products: req.params.id },
-      });
-    }
     res.status(200).send("Produktas buvo sėkmingai atnaujintas");
   } catch (err) {
     res.json(err);

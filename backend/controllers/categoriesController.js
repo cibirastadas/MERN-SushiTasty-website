@@ -28,7 +28,7 @@ export const createNewCategory = async (req, res, next) => {
   }
 };
 
-export const deleteCategorykById = async (req, res, next) => {
+export const deleteCategorById = async (req, res, next) => {
   try {
     await Category.deleteOne({ _id: req.params.id });
     res.json(200);

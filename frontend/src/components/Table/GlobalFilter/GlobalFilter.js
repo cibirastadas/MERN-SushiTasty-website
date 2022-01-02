@@ -9,9 +9,9 @@ const GlobalFilter = ({
 }) => {
   const count = preGlobalFilteredRows.length;
   const [value, setValue] = useState(globalFilter);
-  const onChange = useAsyncDebounce((value) => {
+  const handleChange = useAsyncDebounce((value) => {
     setGlobalFilter(value || undefined);
-  }, 300);
+  }, 1000);
   return (
     <div className={classes.globalFilter}>
       <input
@@ -19,7 +19,7 @@ const GlobalFilter = ({
         value={value || ""}
         onChange={(e) => {
           setValue(e.target.value);
-          onChange(e.target.value);
+          handleChange(e.target.value);
         }}
         placeholder={`Išviso rasta ${count}`}
       />

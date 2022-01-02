@@ -1,3 +1,11 @@
+.editBtnsBlock {
+  display: flex;
+  justify-content: center;
+}
+.addressActionBtns {
+  display: flex;
+  justify-content: center;
+}
 .modalWidth {
   width: 800px;
 }

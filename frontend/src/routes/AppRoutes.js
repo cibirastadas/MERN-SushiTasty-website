@@ -26,7 +26,7 @@ const AppRoutes = () => {
         component={Feedbacks}
       />
       <Route exact path="/admin/products" component={AdminProducts} />
-      <Route exact path="/admin/orders" component={AdminOrders} />
+      <Route exact path={["/admin/orders", "/courier/orders", "/kitchenWorker/orders"]} component={AdminOrders} />
     </Switch>
   );
 };

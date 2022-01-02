@@ -1,9 +1,6 @@
 import express, { urlencoded, json } from "express";
 import mongoose from "mongoose";
-
-/* middlewares */
 import authJWT from "./utils/authJWT.js";
-/* routes */
 import logins from "./routes/loginsRoute.js";
 import register from "./routes/registerRoute.js";
 import products from "./routes/productsRoute.js";
@@ -36,16 +33,11 @@ app.use("/order", authJWT, orders);
 app.use("/addresses", authJWT, addresses);
 
 app.use("/orderProducts", authJWT, orderProducts);
-/* Random route*/
 
 app.all("*", (req, res, next) => {
   const err = new AppError(`requested url ${req.path} not found`, 404);
-  next(
-    err
-  ); /* priima errora ir iskviexiu konkrecia middleware, jei nenurodau iskviecia kita middleware*/
+  next(err);
 });
-
-/* Error handler */
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 5000;
@@ -62,8 +54,6 @@ mongoose.connect(
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => console.log("Connected to database")
 );
-
-/* Connect to Heroku */
 
 /* Connect to server */
 app.listen(process.env.PORT || 5000, () => console.log("Connected to server"));

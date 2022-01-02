@@ -1,8 +1,12 @@
-import React, { useMemo } from "react";
-import { useGlobalFilter, useSortBy, useTable } from "react-table";
+import React, { useMemo, useEffect } from "react";
+import {
+  useGlobalFilter,
+  useSortBy,
+  useTable,
+  usePagination,
+} from "react-table";
 import Button from "../Buttons/ToggleButton/ToggleButton";
 import { trackOrder } from "../../data/trackOrder";
-
 import {
   TiArrowSortedUp,
   TiArrowSortedDown,
@@ -16,14 +20,20 @@ import { VscOpenPreview } from "react-icons/vsc";
 import classes from "./Table.module.css";
 import GlobalFilter from "./GlobalFilter/GlobalFilter";
 import ViewOrderProducts from "../Pages/Orders/ViewOrderProducts/ViewOrderProducts";
+import TablePagination from "../Pagination/TablePagination/TablePagination";
+import LoadingScreen from "../../components/LoadingScreen/LoadingScreen";
 const Table = ({
   data,
+  loading,
   columnsData,
   handleDelete,
   handleAdd,
   handleUpdate,
   adminOrder,
   handleUpdateOrder,
+  fetchData,
+  pageCount: controlledPageCount,
+  paginationNavigation,
 }) => {
   //useMemo hook atsimina duomenis kiekvineo render metu ir isaugo talpykloje(cache) ir nekviecia per naujo funkcijos jeigu dependency nepasikeite
   const memoColumns = useMemo(() => columnsData, [columnsData]);
@@ -71,22 +81,32 @@ const Table = ({
     {
       columns: memoColumns,
       data: memoData,
+      pageCount: controlledPageCount,
+      manualPagination: true,
+      autoResetPage: false,
+      manualGlobalFilter: true,
     },
     useGlobalFilter,
     tableHoooks,
-    useSortBy
+    useSortBy,
+    usePagination
   );
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    rows,
+    page,
+    nextPage,
+    previousPage,
+    gotoPage, //function
+    state: { pageIndex, pageSize, globalFilter },
     prepareRow,
-    footerGroups,
     preGlobalFilteredRows,
     setGlobalFilter,
-    state,
   } = tableInstance;
+  useEffect(() => {
+    fetchData && fetchData(pageIndex, globalFilter);
+  }, [fetchData, pageIndex, pageSize, globalFilter]);
   const showTitle = (column) => {
     if (column.accessor) {
       return (
@@ -108,106 +128,113 @@ const Table = ({
   };
   return (
     <>
-      <div className={classes.tableContainer}>
-        <div
-          className={`${classes.globalFilter} ${
-            adminOrder ? classes.globalFilterMargin : ""
-          }`}
-        >
-          {!adminOrder && (
-            <Button action={handleAdd} style={classes.addBtn}>
-              <TiPlus className={classes.plusIcon} />
-              <span className={classes.addText}>Pridėti</span>
-            </Button>
+      {loading ? (
+        <LoadingScreen loading={loading} />
+      ) : (
+        <div className={classes.tableContainer}>
+          <div
+            className={`${classes.globalFilter} ${
+              adminOrder ? classes.globalFilterMargin : ""
+            }`}
+          >
+            {!adminOrder && (
+              <Button action={handleAdd} style={classes.addBtn}>
+                <TiPlus className={classes.plusIcon} />
+                <span className={classes.addText}>Pridėti</span>
+              </Button>
+            )}
+            <GlobalFilter
+              preGlobalFilteredRows={preGlobalFilteredRows}
+              setGlobalFilter={setGlobalFilter}
+              globalFilter={globalFilter}
+              adminOrder={adminOrder}
+            />
+          </div>
+          {!data.length ? (
+            <p className={classes.empty}>Duomenų nerasta</p>
+          ) : (
+            <div className={classes.tableParent}>
+              <table {...getTableProps()}>
+                <thead>
+                  {headerGroups.map((headerGroup) => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                      {headerGroup.headers.map((column) => (
+                        <th
+                          {...column.getHeaderProps(
+                            column.isSort && column.getSortByToggleProps()
+                          )}
+                        >
+                          {showTitle(column)}
+                        </th>
+                      ))}
+                    </tr>
+                  ))}
+                </thead>
+                <tbody {...getTableBodyProps()}>
+                  {page.map((row) => {
+                    prepareRow(row);
+                    return (
+                      <tr {...row.getRowProps()}>
+                        {row.cells.map((cell, index) => {
+                          return (
+                            <td {...cell.getCellProps()}>
+                              <>
+                                {cell.column.selection && (
+                                  <select
+                                    name={"trackOrder"}
+                                    value={cell.value}
+                                    onChange={(e) =>
+                                      handleUpdateOrder(
+                                        e,
+                                        cell.row.original.order._id
+                                      )
+                                    }
+                                    className={classes.trackOrder}
+                                  >
+                                    {Object.keys(trackOrder).map(
+                                      (track, index) => {
+                                        return (
+                                          <option key={index} value={track}>
+                                            {trackOrder[track]}
+                                          </option>
+                                        );
+                                      }
+                                    )}
+                                  </select>
+                                )}
+                                {!cell.column.selection &&
+                                  (cell.value ? (
+                                    cell.value === true ? (
+                                      <TiPlus />
+                                    ) : (
+                                      cell.render("Cell")
+                                    )
+                                  ) : cell.column.id !== "edit" ? (
+                                    <TiMinus />
+                                  ) : (
+                                    cell.render("Cell")
+                                  ))}
+                              </>
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+              <div className={classes.pagination}>
+                <TablePagination
+                  paginationNavigation={paginationNavigation}
+                  gotoPage={gotoPage}
+                  previousPage={previousPage}
+                  nextPage={nextPage}
+                />
+              </div>
+            </div>
           )}
-          <GlobalFilter
-            preGlobalFilteredRows={preGlobalFilteredRows}
-            setGlobalFilter={setGlobalFilter}
-            globalFilter={state.globalFilter}
-            adminOrder={adminOrder}
-          />
         </div>
-        <div className={classes.tableParent}>
-          <table {...getTableProps()}>
-            <thead>
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <th
-                      {...column.getHeaderProps(
-                        column.isSort && column.getSortByToggleProps()
-                      )}
-                    >
-                      {showTitle(column)}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-              {rows.map((row) => {
-                prepareRow(row);
-                return (
-                  <tr {...row.getRowProps()}>
-                    {row.cells.map((cell, index) => {
-                      return (
-                        <td {...cell.getCellProps()}>
-                          <>
-                            {cell.column.selection && (
-                              <select
-                                name={"trackOrder"}
-                                value={cell.value}
-                                onChange={(e) =>
-                                  handleUpdateOrder(
-                                    e,
-                                    cell.row.original.order._id
-                                  )
-                                }
-                                className={classes.trackOrder}
-                              >
-                                {Object.keys(trackOrder).map((track, index) => {
-                                  return (
-                                    <option key={index} value={track}>
-                                      {trackOrder[track]}
-                                    </option>
-                                  );
-                                })}
-                              </select>
-                            )}
-                            {!cell.column.selection &&
-                              (cell.value ? (
-                                cell.value === true ? (
-                                  <TiPlus />
-                                ) : (
-                                  cell.render("Cell")
-                                )
-                              ) : cell.column.id !== "edit" ? (
-                                <TiMinus />
-                              ) : (
-                                cell.render("Cell")
-                              ))}
-                          </>
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-            </tbody>
-            <tfoot>
-              {footerGroups.map((footerGroup) => (
-                <tr {...footerGroup.getFooterGroupProps()}>
-                  {footerGroup.headers.map((column) => (
-                    <td {...column.getFooterProps()}>
-                      {column.render("Footer")}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tfoot>
-          </table>
-        </div>
-      </div>
+      )}
     </>
   );
 };

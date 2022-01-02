@@ -1,5 +1,7 @@
 import React from "react";
+import Select from "react-select";
 import classes from "./AddressForm.module.css";
+import { lithuanianCities } from "../../../../data/lithuanianCities";
 const AddressForm = ({
   values,
   errors,
@@ -9,6 +11,31 @@ const AddressForm = ({
 }) => {
   return (
     <div className={classes.addressContainer}>
+      <div className={classes.cityBox}>
+        <label>
+          Miestas
+          <Select
+            className={classes.city}
+            options={lithuanianCities.map((el) => ({
+              value: el.city,
+              label: el.city,
+              name: "city",
+            }))}
+            value={{ label: values.city }}
+            styles={{
+              control: (base) => ({
+                ...base,
+                "&:hover": { borderColor: "none" },
+                border: "1px solid lightgray",
+                boxShadow: "none",
+              }),
+            }}
+            placeholder="Miestas / didmiestis*"
+            onChange={handleChange}
+          />
+        </label>
+        {errors.city && <p className="error">{errors.city}</p>}
+      </div>
       {addressInputList.map((input) => {
         var TagName = input.tag;
         return (

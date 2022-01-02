@@ -14,13 +14,17 @@ const LogReg = ({ handleLogin, readCookie, userCookie, login }) => {
     password2: "",
   });
   const [response, setResponse] = useState("");
+  const [errorResponse, setErrorResponse] = useState("");
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [account, setAccount] = useState(true);
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    let { name, value } = event.target;
+    if (name === "name") {
+      value = capitalize(value);
+    }
     setValues({ ...values, [name]: value });
   };
 
@@ -32,6 +36,7 @@ const LogReg = ({ handleLogin, readCookie, userCookie, login }) => {
 
   const handleClose = () => {
     handleLogin();
+    setResponse("");
     setValues({
       name: "",
       email: "",
@@ -39,11 +44,17 @@ const LogReg = ({ handleLogin, readCookie, userCookie, login }) => {
       password2: "",
     });
   };
-
-  const handleAccount = () => setAccount(!account);
-
+  const capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+  };
+  const handleAccount = () => {
+    setErrorResponse("");
+    setAccount(!account);
+    setResponse("");
+  };
   useEffect(() => {
     if (Object.keys(errors).length === 0 && isSubmitting) {
+      setErrorResponse("");
       const path = account ? "login" : "register";
       axios
         .post("http://localhost:5000/" + path, values)
@@ -54,12 +65,18 @@ const LogReg = ({ handleLogin, readCookie, userCookie, login }) => {
             Cookies.set("accessToken", res.data.accessToken);
             axios.defaults.headers["Authorization"] =
               "Bearer " + res.data.accessToken;
-            setResponse(res.data.user);
+            setResponse(res.data.message);
+          } else {
+            setResponse(res.data);
           }
         })
         .catch((error) => {
           setIsSubmitting(false);
-          setResponse(error.response.data);
+          if (account) {
+            setErrorResponse(error.response.data.message);
+            return;
+          }
+          setErrorResponse(error.response.data);
         });
     }
   }, [errors, account, isSubmitting, values]);
@@ -74,11 +91,16 @@ const LogReg = ({ handleLogin, readCookie, userCookie, login }) => {
     <Modal open={login} onClose={handleClose} modalWidth={classes.modalWdith}>
       <div className={classes.cover}></div>
       <div className={classes.moduleRight}>
-        {/* <p className={classes.response}>{!isSubmitted && response}</p> */}
-        {userCookie ? (
-          <FormSuccess response={response} />
+        {response ? (
+          <FormSuccess
+            response={response}
+            account={account}
+            handleAccount={handleAccount}
+          />
         ) : (
           <LogRegForm
+            errorResponse={errorResponse}
+            isSubmitted={isSubmitted}
             values={values}
             handleChange={handleChange}
             handleSubmit={handleSubmit}

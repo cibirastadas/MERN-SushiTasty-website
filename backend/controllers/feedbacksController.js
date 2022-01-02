@@ -1,14 +1,8 @@
 import Feedbacks from "../models/feedbacksModel.js";
 
 export const getAllFeedbacks = async (req, res, next) => {
-  try {
-    const feedbacks = await Feedbacks.find();
-    res.json(feedbacks);
-  } catch (err) {
-    res.json({ message: err });
-  }
+  res.json(res.paginatedResults);
 };
-
 export const getFeedbacksForHome = async (req, res, next) => {
   try {
     const feedbacks = await Feedbacks.find().sort("-createdAt").limit(8);
@@ -20,10 +14,7 @@ export const getFeedbacksForHome = async (req, res, next) => {
 
 export const getAllUserFeedbacks = async (req, res, next) => {
   try {
-    const userFeedbacks = await Feedbacks.find({
-      "user._id": req.params.userId,
-    });
-    res.json(userFeedbacks);
+    res.json(res.paginatedResults);
   } catch (err) {
     res.json({ message: err });
   }

@@ -63,13 +63,13 @@ export const validateAddress = (values) => {
   return errors;
 };
 export const validateProducts = (
-  { name, description, price, image, units, amount, categoryId },
+  { name, description, price, image, units, amount, categoryId, category },
   selectedCategoryName
 ) => {
   const unitsRequired = ["sušiai", "sušių padėklai"];
   const amountRequired = ["gėrimai"];
   let errors = {};
-  if (!selectedCategoryName && !categoryId) {
+  if ((!selectedCategoryName && !categoryId) || !category) {
     errors.category = "Prašome pasirinkite kategoriją";
     return errors;
   }

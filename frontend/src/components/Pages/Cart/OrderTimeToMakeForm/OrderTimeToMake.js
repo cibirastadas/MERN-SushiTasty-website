@@ -64,7 +64,7 @@ const OrderTimeToMake = ({
           <p className={`error ${classes.error}`}>{errors["timeToMake"]}</p>
         ) : (
           values.timeToMake.getHours() !== 0 && (
-            <p>{timeToMake(values.timeToMake)}</p>
+            <p>Pagaminimo laikas: {timeToMake(values.timeToMake)}</p>
           )
         )}
       </div>

@@ -1,8 +1,7 @@
 import Address from "../models/addressModel.js";
 export const getAllUserAddresses = async (req, res, next) => {
   try {
-    const addresses = await Address.find({ user: req.params.userId });
-    res.json(addresses);
+    res.json(res.paginatedResults);
   } catch (err) {
     res.json({ msg: err });
   }

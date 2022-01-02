@@ -1,4 +1,3 @@
-/* require("dotenv").config(); */
 import Users from "../models/usersModel.js";
 import AppError from "../utils/appError.js";
 import jwt from "jsonwebtoken";
@@ -9,7 +8,7 @@ export const findUser = async (req, res, next) => {
       email: req.body.email,
     });
     if (user === null) {
-      throw new AppError("Naudotojas nebuvo rastas, bandykite dar kartą", 404);
+      throw new AppError("Naudotojas nebuvo rastas, pagal el. paštą", 404);
     }
     if (await compare(req.body.password, user.password)) {
       const accessToken = jwt.sign(
@@ -19,6 +18,7 @@ export const findUser = async (req, res, next) => {
       );
       res.status(200).json({
         user: { name: user.name, role: user.role, id: user.id },
+        message: `Sekmingai prisijungėte: ${user.name}`,
         accessToken,
       });
       return;

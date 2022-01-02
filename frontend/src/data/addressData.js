@@ -7,14 +7,6 @@ export const addressType = Object.freeze({
 export const addressInputList = [
   {
     id: 1,
-    label: "Miestas",
-    placeholder: "Miestas / didmiestis*",
-    name: "city",
-    type: "text",
-    tag: "input",
-  },
-  {
-    id: 2,
     label: "Adresas",
     placeholder: `Pvz.: „Savanorių pr. 157A" `,
     name: "street",
@@ -22,7 +14,7 @@ export const addressInputList = [
     tag: "input",
   },
   {
-    id: 3,
+    id: 2,
     label: "Telefono nr.",
     placeholder: `+3706 *6 *8 **0`,
     name: "phoneNumber",
@@ -30,7 +22,7 @@ export const addressInputList = [
     tag: "input",
   },
   {
-    id: 4,
+    id: 3,
     label: "Papildoma informacija kurjeriui",
     placeholder: `Pvz.: „laiptine 2", „durų kodas 45", „buto aukšas 2", „ buto nr. 25"`,
     name: "additionalInformation",

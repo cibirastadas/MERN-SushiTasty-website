@@ -51,6 +51,7 @@ const AddProduct = ({
                   name={input.value}
                   onChange={handleChange}
                   {...(input.type === "number" && { min: "0" })}
+                  {...(input.type === "number" && { min: "0" })}
                   disabled={
                     errors.category ? true : errors[input.value]?.disabled
                   }

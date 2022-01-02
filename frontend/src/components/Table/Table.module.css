@@ -12,6 +12,13 @@
   padding: 0 15px;
   width: 100%;
 }
+.empty {
+  color: tomato;
+  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+  font-size: 5rem;
+}
 .tableEditBtns {
   display: flex;
   justify-content: center;

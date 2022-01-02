@@ -8,6 +8,7 @@ import Button from "../../../components/Buttons/ToggleButton/ToggleButton";
 import Modal from "../../../components/Modals/Modal/Modal";
 import OrderPaymentForm from "../../../components/Pages/Cart/OrderPayment";
 import LoadingScreen from "../../../components/LoadingScreen/LoadingScreen";
+import { deliveryType } from "../../../data/deliveryType";
 import { addressInputList, addressRadioList } from "../../../data/addressData";
 import {
   validateOrderPayment,
@@ -53,11 +54,6 @@ const Cart = () => {
     "OrderTimeToMake",
     "PaymentMethodForm",
   ];
-  const orderInputs = {
-    DeliveryHome: "Pristatymas",
-    TakeAwayHome: "Atsiimti pačiam",
-    EatInside: "Valgyti restorane",
-  };
   useEffect(() => {
     if (didLoad || !items) {
       return;
@@ -84,10 +80,11 @@ const Cart = () => {
         await axios
           .get("http://localhost:5000/addresses/" + userCookie.id)
           .then((resp) => {
-            if (!resp.data.length) {
+            if (!resp.data.results.length) {
+              console.log(resp.data);
               return;
             }
-            setUserAddresses(resp.data);
+            setUserAddresses(resp.data.results);
             setLoading(false);
           })
           .catch((error) => console.log(error));
@@ -127,13 +124,15 @@ const Cart = () => {
   };
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     setValues({ ...values, [name]: value });
   };
   const handleChangeTime = (time) => {
     setValues({ ...values, timeToMake: time });
   };
   const handleChangeAddress = (event) => {
-    const { name, value } = event.target;
+    const name = event.target?.name || event.name;
+    const value = event.target?.value || event.value;
     setValues({ ...values, address: { ...values.address, [name]: value } });
   };
   const handleCreateOrder = () => {
@@ -253,7 +252,7 @@ const Cart = () => {
         userId: userCookie.id,
       })
       .then((resp) => {
-        setUserAddresses([...userAddresses, resp.data.address]);
+        setUserAddresses([resp.data.address, ...userAddresses]);
         resetAddressValues();
       })
       .catch((error) => console.log(error));
@@ -262,7 +261,6 @@ const Cart = () => {
     if (!userAddresses.length) {
       return;
     }
-    const lastAddressId = userAddresses[userAddresses.length - 1]._id;
     setValues((v) => {
       return {
         ...v,
@@ -273,7 +271,7 @@ const Cart = () => {
           additionalInformation: "",
           addressType: "",
         },
-        deliveryAddressId: lastAddressId,
+        deliveryAddressId: userAddresses[0]._id,
       };
     });
   }, [userAddresses]);
@@ -325,7 +323,7 @@ const Cart = () => {
                         addressRadioList={addressRadioList}
                         errors={errors}
                         handleChange={handleChange}
-                        orderInputs={orderInputs}
+                        orderInputs={deliveryType}
                         component={component}
                         key={index}
                         allOrderEnums={allOrderEnums}

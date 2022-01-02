@@ -10,7 +10,7 @@ export const getAllOrders = async (req, res, next) => {
 };
 export const getAllUserOrders = async (req, res, next) => {
   try {
-    const orders = await Order.find({});
+    const orders = await Order.find().sort("-createdAt");
     res.json(orders);
   } catch (err) {
     res.json({ msg: err });
@@ -34,7 +34,7 @@ export const createNewOrder = async (req, res, next) => {
       timeToMake: req.body.timeToMake,
       total: req.body.total,
       deliveryType: req.body.deliveryType,
-      deliveryAddress: req.body.deliveryAddress,
+      deliveryAddress: req.body.deliveryAddress || {},
       paymentMethod: req.body.paymentMethod,
     });
     const orderProducts = req.body.orderProducts.map((item) => {
@@ -47,7 +47,8 @@ export const createNewOrder = async (req, res, next) => {
     OrderProduct.insertMany(orderProducts);
     res.status(200).send("Uzsakymas gautas");
   } catch (err) {
-    res.json({ message: err });
+    console.log(err);
+    res.json(err);
   }
 };
 

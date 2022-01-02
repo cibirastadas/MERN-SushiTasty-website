@@ -56,6 +56,7 @@ const FeedbackUser = ({
       );
     }
   };
+
   return (
     <div className={classes.feedbackBlock}>
       <FeedbackDisplay feedback={feedback} />

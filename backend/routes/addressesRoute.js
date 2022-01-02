@@ -1,6 +1,8 @@
 import { Router } from "express";
+import paginateResults from "../utils/paginateResults.js";
+import Address from "../models/addressModel.js";
+import { authNormalRole } from "../utils/authRoles.js";
 const router = Router();
-/* middlewares */
 
 import {
   getAllUserAddresses,
@@ -9,12 +11,17 @@ import {
   updateAddressById,
 } from "../controllers/addressController.js";
 
-router.get("/:userId", getAllUserAddresses);
+router.get(
+  "/:userId",
+  authNormalRole,
+  paginateResults(Address, "user"),
+  getAllUserAddresses
+);
 
-router.post("/", createNewAddress);
+router.post("/", authNormalRole, createNewAddress);
 
-router.delete("/:id", deleteAddressById);
+router.delete("/:id", authNormalRole, deleteAddressById);
 
-router.patch("/:addressId", updateAddressById);
+router.patch("/:addressId", authNormalRole, updateAddressById);
 
 export default router;

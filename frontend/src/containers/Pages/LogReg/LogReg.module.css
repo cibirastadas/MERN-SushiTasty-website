@@ -1,6 +1,5 @@
 .cover {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Lock_font_awesome.svg/512px-Lock_font_awesome.svg.png");
-
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -15,7 +14,7 @@
   background-color: #e2e8ea;
   flex: 1;
   padding: 25px 25px 40px 25px;
-  height: 400px;
+  min-height: 400px;
   width: 100%;
 }
 

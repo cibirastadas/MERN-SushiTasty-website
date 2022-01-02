@@ -44,7 +44,7 @@ const FeedbacksForm = ({
               action={handleUpdate}
               style={classes.button}
             >
-              Atnaujinti
+              Išsaugoti
             </Button>
           ) : (
             <Button action={handleSubmit} style={classes.button}>

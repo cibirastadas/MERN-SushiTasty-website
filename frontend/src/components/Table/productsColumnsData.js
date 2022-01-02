@@ -51,18 +51,6 @@ export const productsColumnsData = [
     Footer: "Nuotrauka",
     isSort: false,
     accessor: "image",
-    /* Cell: ({ row }) => {
-      return <img src={row.values.image} alt="Food" className="productImage" />;
-    }, */
-    /*  Cell: (tableData) => {
-      return (
-        <img
-          src={tableData.row.original.image}
-          alt="Food"
-          className="productImage"
-        />
-      );
-    }, */
     Cell: (tableData) => {
       return <img src={tableData.value} alt="Food" className="productImage" />;
     },

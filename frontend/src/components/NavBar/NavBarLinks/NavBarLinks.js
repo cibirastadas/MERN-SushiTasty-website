@@ -77,7 +77,13 @@ const NavBarLinks = ({
               onMouseLeave={onMouseLeave}
             >
               <Link
-                to="/feedbacks"
+                to={
+                  userCookie.role === "KitchenWorker"
+                    ? "/kitchenWorker/orders"
+                    : userCookie.role === "Courier"
+                    ? "/courier/orders"
+                    : "/feedbacks"
+                }
                 className={classes.navLink}
                 onClick={closeMobileMenu}
               >

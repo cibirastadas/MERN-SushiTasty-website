@@ -12,6 +12,10 @@
   margin: 0.5rem 0;
   margin: 0.5rem 25px;
 }
+.addContainer {
+  display: flex;
+  justify-content: space-between;
+}
 .addressesEmpty {
   color: tomato;
   padding: 4rem 0;

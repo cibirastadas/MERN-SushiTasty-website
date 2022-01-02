@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classes from "./ProductDisplay.module.css";
 import Button from "../Buttons/ToggleButton/ToggleButton";
+import Cookies from "js-cookie";
 import { BiPlus, BiMinus } from "react-icons/bi";
 const ProductDisplay = ({
   data,
@@ -9,6 +10,7 @@ const ProductDisplay = ({
   handleDeleteProduct,
   handleAddProduct,
   handleDeleteAll,
+  handleOpenResponseModal,
   view,
 }) => {
   const [show, showSet] = useState(false);
@@ -19,12 +21,21 @@ const ProductDisplay = ({
       return <p>Turis: {data.amount}l</p>;
     }
   };
-
+  const [userCookie] = useState(() => {
+    if (Cookies.get("user")) {
+      return JSON.parse(Cookies.get("user"));
+    }
+    return false;
+  });
   const onMouseEnter = () => showSet(true);
 
   const onMouseLeave = () => showSet(false);
 
   const handleAddToCart = (item) => {
+    if (!userCookie) {
+      handleOpenResponseModal();
+      return;
+    }
     const selectedItems = JSON.parse(localStorage.getItem("items"));
     if (selectedItems) {
       const existProd = selectedItems.selectedProd.find(
@@ -120,27 +131,6 @@ const ProductDisplay = ({
             )}
           </>
         )}
-        {/*  {!cart && !admin ? (
-          <Button action={handleAddToCart} item={data}>
-            Į KREPŠELĮ
-          </Button>
-        ) : !admin ? (
-          <>
-            <Button action={handleDeleteProduct} item={data}>
-              Pašalinti 1
-            </Button>
-          </>
-        ) : (
-          <>
-            <Button action={handleDeleteProduct} id={data._id}>
-              Pašalinti
-            </Button>
-            <br />
-            <Button action={handleShowUpdateForm} item={data}>
-              Atnaujinti
-            </Button>
-          </>
-        )} */}
       </div>
       <div
         className={

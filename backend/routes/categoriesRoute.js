@@ -1,25 +1,21 @@
 import { Router } from "express";
-const router = Router();
-/* middlewares */
 import authJWT from "../utils/authJWT.js";
+import { authAdminRole } from "../utils/authRoles.js";
+const router = Router();
 
 import {
   getAllCategories,
   createNewCategory,
-  deleteCategorykById,
+  deleteCategorById,
   updateCategoryById,
 } from "../controllers/categoriesController.js";
 
-/* Gets all categories */
 router.get("/:id?", getAllCategories);
 
-/* Create new categorie */
-router.post("/", authJWT, createNewCategory);
+router.post("/", authJWT, authAdminRole, createNewCategory);
 
-/* Delete category */
-router.delete("/:id", authJWT, deleteCategorykById);
+router.delete("/:id", authJWT, authAdminRole, deleteCategorById);
 
-/* Update category  */
-router.patch("/:id", authJWT, updateCategoryById);
+router.patch("/:id", authJWT, authAdminRole, updateCategoryById);
 
 export default router;

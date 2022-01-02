@@ -4,6 +4,13 @@
   margin: auto;
   padding: 0 1rem;
 }
+.ordersEmpty {
+  color: tomato;
+  padding: 4rem 0;
+  display: flex;
+  justify-content: center;
+  font-size: 5rem;
+}
 .orderBlock {
   margin: 1rem 0;
   padding: 25px;

@@ -3,6 +3,8 @@ import classes from "./OrderAdressForm.module.css";
 import { BiPlusCircle, BiCheckCircle, BiCircle } from "react-icons/bi";
 import IconButton from "../../../Buttons/IconButton/IconButton";
 import ToggleButton from "../../../Buttons/ToggleButton/ToggleButton";
+import { lithuanianCities } from "../../../../data/lithuanianCities";
+import Select from "react-select";
 const OrderAddressForm = ({
   isOpenCollapsible,
   addressInputList,
@@ -86,9 +88,34 @@ const OrderAddressForm = ({
       <div
         className={`${classes.addressForm} ${isShow ? classes.showForm : ""}`}
       >
+        <div className={classes.cityBox}>
+          <label>
+            Miestas
+            <Select
+              className={classes.city}
+              options={lithuanianCities.map((el) => ({
+                value: el.city,
+                label: el.city,
+                name: "city",
+              }))}
+              name={values.address.city}
+              /* name={values.address.city} */
+              styles={{
+                control: (base) => ({
+                  ...base,
+                  "&:hover": { borderColor: "none" },
+                  border: "1px solid lightgray",
+                  boxShadow: "none",
+                }),
+              }}
+              placeholder="Miestas / didmiestis*"
+              onChange={handleChangeAddress}
+            />
+          </label>
+          {errors.city && <p className="error">{errors.city}</p>}
+        </div>
         {addressInputList.map((input) => {
           var TagName = input.tag;
-
           return (
             <div className={classes.inputGroup} key={input.id}>
               <label>

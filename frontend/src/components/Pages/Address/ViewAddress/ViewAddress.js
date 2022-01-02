@@ -15,14 +15,13 @@ const ViewAddress = ({
   addressRadioList,
   isAddressProvided,
   errors,
-  isResponseModal,
 }) => {
   useEffect(() => {
     if (isAddressProvided) {
       setIsOpen(false);
     }
   }, [isAddressProvided]);
-  
+
   const [isOpen, setIsOpen] = useState(false);
   const handleCloseModal = () => {
     setIsOpen(false);

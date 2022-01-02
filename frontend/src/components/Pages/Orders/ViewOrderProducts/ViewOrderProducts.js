@@ -41,7 +41,7 @@ const ViewOrderProducts = ({
               <span>Pristatymo būdas: </span>
               {deliveryType[order.deliveryType]}
             </p>
-            {!user && (
+            {!user && order.deliveryAddress.city && (
               <>
                 <p>
                   <span>Pristatymo adresas: </span>
