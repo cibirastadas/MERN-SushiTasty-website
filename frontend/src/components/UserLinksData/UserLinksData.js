@@ -12,19 +12,19 @@ export const UserLinks = [
     roles: ["Admin"],
   },
   {
-    title: "Uzsakymai",
+    title: "Užsakymai",
     path: "/admin/orders",
     cName: "dropDownLink",
     roles: ["Admin"],
   },
   {
-    title: "Uzsakymai",
+    title: "Užsakymai",
     path: "/kitchenWorker/orders",
     cName: "dropDownLink",
     roles: ["KitchenWorker"],
   },
   {
-    title: "Uzsakymai",
+    title: "Užsakymai",
     path: "/courier/orders",
     cName: "dropDownLink",
     roles: ["Courier"],

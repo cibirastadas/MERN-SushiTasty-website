@@ -9,6 +9,7 @@ import { productsColumnsData } from "../../../../components/Table/productsColumn
 import { validateProducts } from "../../../../components/ValidateInfo/ValidateInfo";
 import ResponseModal from "../../../../components/Modals/ResponseModal";
 import { useHistory } from "react-router-dom";
+import MobileNavigation from "../../../../components/MobileNavigation/MobileNavigation";
 const AdminProducts = () => {
   const [values, setValues] = useState({
     _id: 0,
@@ -257,6 +258,7 @@ const AdminProducts = () => {
           bodyText={response}
         />
         <div className={classes.productsContainer}>
+          <MobileNavigation />
           <Table
             handleDelete={handleDeleteProduct}
             handleAdd={handleOpenWithValidation}

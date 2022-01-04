@@ -8,7 +8,8 @@ export const getFeedbacksForHome = async (req, res, next) => {
     const feedbacks = await Feedbacks.find().sort("-createdAt").limit(8);
     res.json(feedbacks);
   } catch (err) {
-    res.json({ message: err });
+    res.status(500).json(err);
+    console.log(err);
   }
 };
 

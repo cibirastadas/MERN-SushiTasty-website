@@ -17,6 +17,7 @@ import ViewAddress from "../../../components/Pages/Address/ViewAddress/ViewAddre
 import Modal from "../../../components/Modals/Modal/Modal";
 import AddressForm from "../../../components/Pages/Address/AddressForm/AddressForm";
 import Pagination from "../../../components/Pagination/Pagination";
+import MobileNavigation from "../../../components/MobileNavigation/MobileNavigation";
 const Addresses = () => {
   const { search } = useLocation();
   const [values, setValues] = useState({
@@ -150,7 +151,8 @@ const Addresses = () => {
             bodyText={response}
           />
           <div className={classes.addressesContainer}>
-            <hr />
+            <MobileNavigation />
+            <hr className={classes.hideHr}/>
             <div className={classes.addContainer}>
               <Button
                 style={`${classes.addBtn} ${classes.btnWidth}`}

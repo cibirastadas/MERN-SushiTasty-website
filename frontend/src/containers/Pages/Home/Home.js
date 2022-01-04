@@ -17,8 +17,10 @@ export const Home = () => {
     });
     const getData = async () => {
       setLoading(true);
+      console.log("CIA");
       try {
         await http.get("http://localhost:5000/feedbacks/home").then((resp) => {
+          console.log(resp.data);
           setFeedbacks(resp.data);
         });
       } catch (e) {
@@ -28,6 +30,7 @@ export const Home = () => {
     };
     getData();
   }, []);
+
   return (
     <div className={classes.homeContainer}>
       {loading ? (

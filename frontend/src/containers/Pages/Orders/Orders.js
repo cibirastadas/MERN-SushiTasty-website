@@ -9,6 +9,7 @@ import ViewOrderProducts from "../../../components/Pages/Orders/ViewOrderProduct
 import LoadingScreen from "../../../components/LoadingScreen/LoadingScreen";
 import Pagination from "../../../components/Pagination/Pagination";
 import { useLocation } from "react-router-dom";
+import MobileNavigation from "../../../components/MobileNavigation/MobileNavigation";
 const Orders = () => {
   const [userCookie] = useState(() => JSON.parse(Cookies.get("user")));
   const [userOrders, setUserOrders] = useState([]);
@@ -36,6 +37,7 @@ const Orders = () => {
           <PageCovers cName={{ coverImg: "coverOrder" }}>Užsakymai</PageCovers>
 
           <div className={classes.orderContainer}>
+            <MobileNavigation />
             {!userOrders.length ? (
               <p className={classes.ordersEmpty}>Užsakymų nėra</p>
             ) : (

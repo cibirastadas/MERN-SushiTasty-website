@@ -1,0 +1,32 @@
+.meniuNavigationContainer {
+  margin: 1rem 0;
+  display: flex;
+}
+.meniuNavigationContainer .link {
+  text-align: center;
+  font-weight: bold;
+  color: rgb(87, 86, 86);
+  flex: 1;
+  cursor: pointer;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  border-bottom: 2px solid black;
+}
+.link:hover {
+  color: black;
+}
+.meniuNavigationContainer .activeLink {
+  border-bottom: 2px solid red;
+}
+@media (min-width: 960px) {
+  .meniuNavigationContainer {
+    display: none;
+  }
+}
+@media (max-width: 500px) {
+  .meniuNavigationContainer {
+    flex-direction: column;
+  }
+}

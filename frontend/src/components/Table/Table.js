@@ -29,14 +29,29 @@ const Table = ({
   handleDelete,
   handleAdd,
   handleUpdate,
+  userCookie,
   adminOrder,
   handleUpdateOrder,
   fetchData,
   pageCount: controlledPageCount,
   paginationNavigation,
 }) => {
-  //useMemo hook atsimina duomenis kiekvineo render metu ir isaugo talpykloje(cache) ir nekviecia per naujo funkcijos jeigu dependency nepasikeite
   const memoColumns = useMemo(() => columnsData, [columnsData]);
+  const orderListByRole = (track) => {
+    if (userCookie.role === "KitchenWorker") {
+      return kitchenWorkerExcludeTrack(track);
+    }
+    if (userCookie.role === "Courier") {
+      return courierExcludeTrack(track);
+    }
+    return false;
+  };
+  const kitchenWorkerExcludeTrack = (track) => {
+    return ["Draft", "Delivery", "Canceled", "Completed"].includes(track);
+  };
+  const courierExcludeTrack = (track) => {
+    return ["Draft", "Canceled", "Preparing", "Ordered"].includes(track);
+  };
   const memoData = useMemo(() => data, [data]);
   const tableHoooks = (hooks) => {
     hooks.visibleColumns.push((columns) => [
@@ -76,7 +91,6 @@ const Table = ({
       },
     ]);
   };
-  //Naudojame hook (actual data, columns = th)
   const tableInstance = useTable(
     {
       columns: memoColumns,
@@ -98,7 +112,7 @@ const Table = ({
     page,
     nextPage,
     previousPage,
-    gotoPage, //function
+    gotoPage,
     state: { pageIndex, pageSize, globalFilter },
     prepareRow,
     preGlobalFilteredRows,
@@ -193,6 +207,9 @@ const Table = ({
                                   >
                                     {Object.keys(trackOrder).map(
                                       (track, index) => {
+                                        if (orderListByRole(track)) {
+                                          return false;
+                                        }
                                         return (
                                           <option key={index} value={track}>
                                             {trackOrder[track]}

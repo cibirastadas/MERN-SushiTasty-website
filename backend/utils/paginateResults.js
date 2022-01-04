@@ -81,6 +81,12 @@ const getModalData = async (
             $options: "i",
           },
         },
+        {
+          trackOrder: {
+            $regex: search,
+            $options: "i",
+          },
+        },
       ],
     })
       .lean()
@@ -176,6 +182,12 @@ const getDocumentLength = async (
         },
         {
           description: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          trackOrder: {
             $regex: search,
             $options: "i",
           },

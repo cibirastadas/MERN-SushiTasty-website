@@ -6,8 +6,10 @@ import axios from "../../../../axios/axiosInstance";
 import classes from "./AdminOrders.module.css";
 import LoadingScreen from "../../../../components/LoadingScreen/LoadingScreen";
 import PageCovers from "../../../../components/PageCovers/PageCovers";
+import { trackOrder } from "../../../../data/trackOrder";
 import ResponseModal from "../../../../components/Modals/ResponseModal";
 import { useHistory } from "react-router-dom";
+import MobileNavigation from "../../../../components/MobileNavigation/MobileNavigation";
 
 const AdminOrders = () => {
   const [userCookie] = useState(() => JSON.parse(Cookies.get("user")));
@@ -51,7 +53,7 @@ const AdminOrders = () => {
     return false;
   };
   const fetchData = useCallback(
-    (pageIndex) => {
+    (pageIndex, search = "") => {
       const fetchId = ++fetchIdRef.current;
       let ordersForRole = "";
       if (userCookie.role === "KitchenWorker") {
@@ -61,7 +63,7 @@ const AdminOrders = () => {
         ordersForRole = "/courier";
       }
       if (fetchId === fetchIdRef.current) {
-        fetchAPIData(pageIndex + 1, ordersForRole);
+        fetchAPIData(pageIndex + 1, ordersForRole, search);
         history.replace({
           pathname: history.location.pathname,
           search: `?page=${pageIndex + 1}`,
@@ -70,11 +72,19 @@ const AdminOrders = () => {
     },
     [history, userCookie.role]
   );
-  const fetchAPIData = async (page, ordersForRole) => {
+  const fetchAPIData = async (page, ordersForRole, search) => {
+    let findTrackorder = "";
+    if (search) {
+      findTrackorder = Object.keys(trackOrder).find((item) => {
+        return trackOrder[item]
+          .toLocaleLowerCase()
+          .includes(search.toLocaleLowerCase());
+      });
+    }
     try {
       setLoading(true);
       const res = await axios.get(
-        `http://localhost:5000/orderProducts${ordersForRole}/?page=${page}&limit=15`
+        `http://localhost:5000/orderProducts${ordersForRole}/?page=${page}&limit=15&search=${findTrackorder}`
       );
       setPaginationNavigation(res.data.paginationNavigation);
       setPageCount(res.data.paginationNavigation.total.page);
@@ -90,6 +100,7 @@ const AdminOrders = () => {
       <div>
         <PageCovers cName={{ coverImg: "coverOrder" }}>Užsakymai</PageCovers>
         <div className={classes.adminOrderContainer}>
+          <MobileNavigation />
           <ResponseModal
             onClose={() => setIsResponseModal(false)}
             open={isResponseModal}
@@ -101,6 +112,7 @@ const AdminOrders = () => {
             adminOrder={true}
             columnsData={ordersColumnsData}
             data={orders}
+            userCookie={userCookie}
             fetchData={fetchData}
             handleUpdateOrder={handleUpdateOrder}
             paginationNavigation={paginationNavigation}

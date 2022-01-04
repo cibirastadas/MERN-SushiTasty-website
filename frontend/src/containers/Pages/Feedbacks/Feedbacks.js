@@ -10,6 +10,7 @@ import classes from "./Feedbacks.module.css";
 import ResponseModal from "../../../components/Modals/ResponseModal";
 import { validateFeedbacks } from "../../../components/ValidateInfo/ValidateInfo";
 import Pagination from "../../../components/Pagination/Pagination";
+import MobileNavigation from "../../../components/MobileNavigation/MobileNavigation";
 
 const Feedbacks = () => {
   const { search } = useLocation();
@@ -106,6 +107,7 @@ const Feedbacks = () => {
         resetValues();
       });
   };
+
   const handleCheckErrors = () => {
     const isAdmin = userCookie.role === "Admin";
     const foundErrors = validateFeedbacks(values, isAdmin);
@@ -130,6 +132,7 @@ const Feedbacks = () => {
             bodyText={response}
           />
           <div className={classes.content}>
+            <MobileNavigation />
             {!feedbacks.length ? (
               <p className={classes.feedbacksEmpty}>Atsiliepimų nėra</p>
             ) : (
