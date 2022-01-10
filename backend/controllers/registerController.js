@@ -4,7 +4,7 @@ export const createNewUser = async (req, res, next) => {
   try {
     const findUser = await Users.findOne({ email: req.body.email });
     if (findUser) {
-      res.status(400).send("Netinkamas elektroninis paštas");
+      return res.status(400).send("Netinkamas elektroninis paštas");
     }
     const hashedPassword = await hash(req.body.password, 10);
     const user = Users({

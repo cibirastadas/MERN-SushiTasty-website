@@ -1,0 +1,29 @@
+.userProfileContainer {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.userProfileBlock {
+  margin: 1rem 0;
+  padding: 25px;
+  box-shadow: 0 4px 4px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+}
+.editBtnsBlock {
+  display: flex;
+  justify-content: center;
+}
+.userProfileBlock p {
+  font-weight: bold;
+  margin: 0.5rem 0;
+}
+.userProfileBlock span {
+  font-weight: normal;
+}
+.editPswBtn {
+  margin-left: 1rem;
+}
+
+.modalWidth {
+  width: 500px;
+}

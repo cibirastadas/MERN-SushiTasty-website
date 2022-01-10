@@ -16,12 +16,11 @@ export const findUser = async (req, res, next) => {
         process.env.ACCESS_TOKEN_SECRET,
         { expiresIn: "90m" }
       );
-      res.status(200).json({
+      return res.status(200).json({
         user: { name: user.name, role: user.role, id: user.id },
         message: `Sekmingai prisijungėte: ${user.name}`,
         accessToken,
       });
-      return;
     }
     throw new AppError("Naudotojo slaptažodis nėra atpažintas", 401);
   } catch (err) {

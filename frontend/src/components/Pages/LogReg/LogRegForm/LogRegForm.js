@@ -27,7 +27,7 @@ const LogRegForm = ({
             className={classes.formInput}
             onChange={handleChange}
           />
-          {errors.name && <p>{errors.name}</p>}
+          {errors.name && <p className="error">{errors.name}</p>}
         </div>
         <div className={classes.formContainer}>
           <input
@@ -38,7 +38,7 @@ const LogRegForm = ({
             className={classes.formInput}
             onChange={handleChange}
           />
-          {errors.email && <p>{errors.email}</p>}
+          {errors.email && <p className="error">{errors.email}</p>}
         </div>
         <div className={classes.formContainer}>
           <input
@@ -49,7 +49,7 @@ const LogRegForm = ({
             className={classes.formInput}
             onChange={handleChange}
           />
-          {errors.password && <p>{errors.password}</p>}
+          {errors.password && <p className="error">{errors.password}</p>}
         </div>
         <div className={account ? classes.hide : classes.formContainer}>
           <input
@@ -60,7 +60,7 @@ const LogRegForm = ({
             className={classes.formInput}
             onChange={handleChange}
           />
-          {errors.password2 && <p>{errors.password2}</p>}
+          {errors.password2 && <p className="error">{errors.password2}</p>}
         </div>
         <div className={classes.formContainer}>
           <Button btnType="submit" action={handleSubmit} style={classes.button}>

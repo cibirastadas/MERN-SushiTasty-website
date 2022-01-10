@@ -18,6 +18,12 @@ export const UserLinks = [
     roles: ["Admin"],
   },
   {
+    title: "Darbuotojai",
+    path: "/admin/workers",
+    cName: "dropDownLink",
+    roles: ["Admin"],
+  },
+  {
     title: "Užsakymai",
     path: "/kitchenWorker/orders",
     cName: "dropDownLink",
@@ -45,6 +51,12 @@ export const UserLinks = [
     title: "Adresai",
     path: "/addresses",
     roles: ["Normal"],
+    cName: "dropDownLink",
+  },
+  {
+    title: "Paskyra",
+    path: "/account",
+    roles: ["Admin", "Normal", "KitchenWorker", "Courier"],
     cName: "dropDownLink",
   },
 ];

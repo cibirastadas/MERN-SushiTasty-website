@@ -56,7 +56,7 @@ const getModalData = async (
 ) => {
   const userId = req.params.userId;
   const categoryId = req.params.categoryId;
-  if (filterByArray.length) {
+  if (filterByArray.length && !search) {
     return await Modal.find({
       [findIn]: { $in: filterByArray },
       ...filterByObj,
@@ -64,13 +64,26 @@ const getModalData = async (
       .lean()
       .sort("-createdAt")
       .select(select)
-      .limit(limit);
+      .limit(limit)
+      .skip(startIndex);
   }
   if (search) {
     return await Modal.find({
       $or: [
         {
           name: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          email: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          role: {
             $regex: search,
             $options: "i",
           },
@@ -88,6 +101,7 @@ const getModalData = async (
           },
         },
       ],
+      ...(filterByArray.length && { [findIn]: { $in: filterByArray } }),
     })
       .lean()
       .limit(limit);
@@ -165,7 +179,7 @@ const getDocumentLength = async (
 ) => {
   const userId = req.params.userId;
   const categoryId = req.params.categoryId;
-  if (filterByArray.length) {
+  if (filterByArray.length && !search) {
     return await Modal.countDocuments({
       [findIn]: { $in: filterByArray },
       ...filterByObj,
@@ -176,6 +190,18 @@ const getDocumentLength = async (
       $or: [
         {
           name: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          email: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          role: {
             $regex: search,
             $options: "i",
           },
@@ -193,6 +219,7 @@ const getDocumentLength = async (
           },
         },
       ],
+      ...(filterByArray.length && { [findIn]: { $in: filterByArray } }),
     }).exec();
   }
   if (userId) {

@@ -1,10 +1,8 @@
 const validateTelephone = new RegExp("^(\\+[0-9]{11})$");
 const validateEmail = new RegExp("^([^.@]+)(.[^.@]+)*@([^.@]+.)+([^.@]+)$");
-export const validateInfo = (values, account) => {
+export const validateInfo = (values, isLogin) => {
   let errors = {};
-  if (account) {
-  }
-  if (!values.name.trim() && !account) {
+  if (!values.name.trim() && !isLogin) {
     errors.name = "Prašome įveskite naudotojo varda";
   }
   if (!values.email) {
@@ -20,10 +18,44 @@ export const validateInfo = (values, account) => {
   } else if (values.password.length < 6) {
     errors.password = "Slaptažodis turi būti, bent iš 6 raidžių ar daugiau";
   }
-  if (!values.password2 && !account) {
+  if (!values.password2 && !isLogin) {
     errors.password2 = "Prašome įveskite slaptažodį";
-  } else if (values.password !== values.password2 && !account) {
+  } else if (values.password !== values.password2 && !isLogin) {
     errors.password2 = "Pakartotinis slaptažodis nesutampa";
+  }
+  return errors;
+};
+export const validateUserProfilPassword = (values) => {
+  let errors = {};
+  if (!values.password) {
+    errors.password = "Prašome įveskite slaptažodį";
+  } else if (values.password.length < 6 || values.oldPassword.length < 6) {
+    errors.password = "Slaptažodis turi būti, bent iš 6 raidžių ar daugiau";
+  }
+  if (!values.oldPassword) {
+    errors.oldPassword = "Prašome įveskite slaptažodį";
+  } else if (values.oldPassword.length < 6) {
+    errors.oldPassword = "Slaptažodis turi būti, bent iš 6 raidžių ar daugiau";
+  }
+  if (!values.password2) {
+    errors.password2 = "Prašome įveskite slaptažodį";
+  } else if (values.password !== values.password2) {
+    errors.password2 = "Pakartotinis slaptažodis nesutampa";
+  }
+  return errors;
+};
+export const validateUserProfileInformation = (values) => {
+  let errors = {};
+  if (!values.name.trim()) {
+    errors.name = "Prašome įveskite naudotojo varda";
+  }
+  if (!values.email) {
+    errors.email = "Prašome įveskite elektroninį paštą";
+  }
+  if (values.email) {
+    if (!validateEmail.test(values.email)) {
+      errors.email = "Netinkamas elektroninio pašto formatas";
+    }
   }
   return errors;
 };

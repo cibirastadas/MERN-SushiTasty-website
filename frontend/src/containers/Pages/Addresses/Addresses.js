@@ -152,7 +152,7 @@ const Addresses = () => {
           />
           <div className={classes.addressesContainer}>
             <MobileNavigation />
-            <hr className={classes.hideHr}/>
+            <hr className={classes.hideHr} />
             <div className={classes.addContainer}>
               <Button
                 style={`${classes.addBtn} ${classes.btnWidth}`}

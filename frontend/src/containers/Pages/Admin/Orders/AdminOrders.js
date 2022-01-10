@@ -76,9 +76,7 @@ const AdminOrders = () => {
     let findTrackorder = "";
     if (search) {
       findTrackorder = Object.keys(trackOrder).find((item) => {
-        return trackOrder[item]
-          .toLocaleLowerCase()
-          .includes(search.toLocaleLowerCase());
+        return trackOrder[item].toLowerCase().includes(search.toLowerCase());
       });
     }
     try {
@@ -108,6 +106,7 @@ const AdminOrders = () => {
             bodyText={response}
           />
           <Table
+            loading={loading}
             pageCount={pageCount}
             adminOrder={true}
             columnsData={ordersColumnsData}

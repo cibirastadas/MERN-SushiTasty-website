@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import classes from "./Pagination.module.css";
 import { MdChevronRight, MdChevronLeft } from "react-icons/md";
 import { FiMinus } from "react-icons/fi";
-const Pagination = ({ paginationNavigation,  }) => {
+const Pagination = ({ paginationNavigation }) => {
   const { last, next, prev, first, current } = paginationNavigation;
   const history = useHistory();
   const handlePaginationAction = (page) => {
@@ -39,10 +39,10 @@ const Pagination = ({ paginationNavigation,  }) => {
       )}
       <Button
         action={handlePaginationAction}
-        item={current?.page}
+        item={current?.page || 1}
         style={classes.currentPage}
       >
-        {current?.page}
+        {current?.page || 1}
       </Button>
       {next?.page && (
         <Button action={handlePaginationAction} item={next?.page}>

@@ -164,7 +164,7 @@ const Table = ({
               adminOrder={adminOrder}
             />
           </div>
-          {!data.length ? (
+          {!data?.length ? (
             <p className={classes.empty}>Duomenų nerasta</p>
           ) : (
             <div className={classes.tableParent}>

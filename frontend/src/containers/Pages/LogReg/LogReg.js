@@ -43,6 +43,8 @@ const LogReg = ({ handleLogin, readCookie, userCookie, login }) => {
       password: "",
       password2: "",
     });
+    setIsSubmitting(false);
+    setErrors({});
   };
   const capitalize = (string) => {
     return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();

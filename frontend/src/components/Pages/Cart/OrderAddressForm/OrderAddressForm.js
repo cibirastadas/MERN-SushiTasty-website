@@ -99,7 +99,6 @@ const OrderAddressForm = ({
                 name: "city",
               }))}
               name={values.address.city}
-              /* name={values.address.city} */
               styles={{
                 control: (base) => ({
                   ...base,

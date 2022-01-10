@@ -21,7 +21,8 @@ const AddressForm = ({
               label: el.city,
               name: "city",
             }))}
-            value={{ label: values.city }}
+            placeholder="Miestas / didmiestis*"
+            value={values.city ? { label: values.city } : ""}
             styles={{
               control: (base) => ({
                 ...base,
@@ -30,7 +31,6 @@ const AddressForm = ({
                 boxShadow: "none",
               }),
             }}
-            placeholder="Miestas / didmiestis*"
             onChange={handleChange}
           />
         </label>

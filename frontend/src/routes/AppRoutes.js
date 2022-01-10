@@ -10,6 +10,8 @@ import UserOrders from "../containers/Pages/Orders/Orders";
 import AdminOrders from "../containers/Pages/Admin/Orders/AdminOrders";
 import Cart from "../containers/Pages/Cart/Cart";
 import Addresses from "../containers/Pages/Addresses/Addresses";
+import Workers from "../containers/Pages/Admin/Workers/Workers";
+import UserProfile from "../containers/Pages/UserProfile/UserProfile";
 const AppRoutes = () => {
   return (
     <Switch>
@@ -26,7 +28,13 @@ const AppRoutes = () => {
         component={Feedbacks}
       />
       <Route exact path="/admin/products" component={AdminProducts} />
-      <Route exact path={["/admin/orders", "/courier/orders", "/kitchenWorker/orders"]} component={AdminOrders} />
+      <Route exact path="/admin/workers" component={Workers} />
+      <Route exact path={"/account"} component={UserProfile} />
+      <Route
+        exact
+        path={["/admin/orders", "/courier/orders", "/kitchenWorker/orders"]}
+        component={AdminOrders}
+      />
     </Switch>
   );
 };
