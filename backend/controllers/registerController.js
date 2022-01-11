@@ -13,7 +13,7 @@ export const createNewUser = async (req, res, next) => {
       password: hashedPassword,
     });
     await user.save();
-    res.json("Registracija buvo sekminga, prašome prisijungti");
+    res.status(200).json("Registracija buvo sekminga, prašome prisijungti");
   } catch (err) {
     next(err);
   }
