@@ -17,6 +17,7 @@ import {
 } from "../../../components/ValidateInfo/ValidateInfo";
 import UserProfileForm from "../../../components/UserProfileForm/UserProfileForm";
 import Modal from "../../../components/Modals/Modal/Modal";
+import MobileNavigation from "../../../components/MobileNavigation/MobileNavigation";
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState({});
   const [errorResponse, setErrorResponse] = useState("");
@@ -91,7 +92,6 @@ const UserProfile = () => {
       .catch((error) => {
         if (error.response.status === 401) {
           setErrorResponse(error.response.data);
-          console.log(error.response.data);
         }
         console.log(error);
       });
@@ -185,9 +185,10 @@ const UserProfile = () => {
             />
           </Modal>
           <div className={classes.userProfileContainer}>
+            <MobileNavigation />
             {userProfile.role === "Normal" && (
               <div className={classes.deleteAccount}>
-                <hr />
+                <hr className={classes.hideHr} />
                 <Button action={handleDeleteAccount}>Ištrinti paskyrą</Button>
                 <hr />
               </div>

@@ -127,6 +127,7 @@ const Addresses = () => {
       .then((res) => {
         setAddresses(updatedAddresses);
         setResponse(res.data);
+        resetValues();
         setIsAddressProvided(true);
         setIsResponseModal(true);
       })

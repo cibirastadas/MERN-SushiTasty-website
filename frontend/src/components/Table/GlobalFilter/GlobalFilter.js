@@ -21,7 +21,7 @@ const GlobalFilter = ({
           setValue(e.target.value);
           handleChange(e.target.value);
         }}
-        placeholder={`Išviso rasta ${count}`}
+        placeholder={`Iš viso rasta ${count}`}
       />
       <BiSearch className={classes.searchIcon} />
     </div>

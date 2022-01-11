@@ -27,3 +27,11 @@
 .modalWidth {
   width: 500px;
 }
+.hideHr {
+  display: none;
+}
+@media (min-width: 960px) {
+  .hideHr {
+    display: block;
+  }
+}
